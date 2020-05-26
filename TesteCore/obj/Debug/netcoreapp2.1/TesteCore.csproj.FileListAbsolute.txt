@@ -1,0 +1,9 @@
+C:\Projetos\DotNet\Carros\TesteCore\bin\Debug\netcoreapp2.1\TesteCore.deps.json
+C:\Projetos\DotNet\Carros\TesteCore\bin\Debug\netcoreapp2.1\TesteCore.dll
+C:\Projetos\DotNet\Carros\TesteCore\bin\Debug\netcoreapp2.1\TesteCore.pdb
+C:\Projetos\DotNet\Carros\TesteCore\obj\Debug\netcoreapp2.1\TesteCore.csprojAssemblyReference.cache
+C:\Projetos\DotNet\Carros\TesteCore\obj\Debug\netcoreapp2.1\TesteCore.csproj.CoreCompileInputs.cache
+C:\Projetos\DotNet\Carros\TesteCore\obj\Debug\netcoreapp2.1\TesteCore.AssemblyInfoInputs.cache
+C:\Projetos\DotNet\Carros\TesteCore\obj\Debug\netcoreapp2.1\TesteCore.AssemblyInfo.cs
+C:\Projetos\DotNet\Carros\TesteCore\obj\Debug\netcoreapp2.1\TesteCore.dll
+C:\Projetos\DotNet\Carros\TesteCore\obj\Debug\netcoreapp2.1\TesteCore.pdb

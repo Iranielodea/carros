@@ -1,0 +1,48 @@
+object frmTela: TfrmTela
+  Left = 0
+  Top = 0
+  BorderStyle = bsDialog
+  Caption = 'Impress'#227'o'
+  ClientHeight = 211
+  ClientWidth = 457
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object dsCert: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 80
+    Top = 64
+    object dsCertC_LETRA: TStringField
+      FieldName = 'C_LETRA'
+      Size = 50
+    end
+    object dsCertNOME: TStringField
+      FieldName = 'NOME'
+      Size = 100
+    end
+    object dsCertMODELO: TStringField
+      FieldName = 'MODELO'
+      Size = 50
+    end
+    object dsCertANO: TStringField
+      FieldName = 'ANO'
+      Size = 4
+    end
+    object dsCertC_NUM_FICHA: TStringField
+      FieldName = 'C_NUM_FICHA'
+      Size = 50
+    end
+    object dsCertMARCA_MOD_ANO_NRO: TStringField
+      FieldName = 'MARCA_MOD_ANO_NRO'
+      Size = 50
+    end
+  end
+end

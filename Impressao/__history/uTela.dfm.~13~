@@ -1,0 +1,335 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Configurar Impress'#227'o'
+  ClientHeight = 152
+  ClientWidth = 355
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object btnConfig: TButton
+    Left = 120
+    Top = 88
+    Width = 113
+    Height = 25
+    Caption = 'Configurar'
+    TabOrder = 0
+  end
+  object Cert: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 56
+    Top = 32
+    object CertMARCA_MOD_ANO_NRO: TStringField
+      FieldName = 'MARCA_MOD_ANO_NRO'
+      Size = 100
+    end
+    object CertC_NUM_FICHA: TStringField
+      FieldName = 'C_NUM_FICHA'
+      Size = 10
+    end
+    object CertC_LETRA: TStringField
+      FieldName = 'C_LETRA'
+      Size = 1
+    end
+    object CertNOME: TStringField
+      FieldName = 'NOME'
+      Size = 50
+    end
+    object CertMODELO: TStringField
+      FieldName = 'MODELO'
+      Size = 50
+    end
+    object CertANO: TIntegerField
+      FieldName = 'ANO'
+    end
+    object CertPLACA: TStringField
+      FieldName = 'PLACA'
+      Size = 10
+    end
+    object CertDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Size = 50
+    end
+    object CertNUM_FICHA: TIntegerField
+      FieldName = 'NUM_FICHA'
+    end
+  end
+  object dsCert: TDataSource
+    DataSet = Cert
+    Left = 120
+    Top = 32
+  end
+  object dbCert: TppDBPipeline
+    DataSource = dsCert
+    UserName = 'dbCert'
+    Left = 184
+    Top = 32
+    object dbCertppField1: TppField
+      FieldAlias = 'MARCA_MOD_ANO_NRO'
+      FieldName = 'MARCA_MOD_ANO_NRO'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 0
+      Searchable = False
+      Sortable = False
+    end
+    object dbCertppField2: TppField
+      FieldAlias = 'C_NUM_FICHA'
+      FieldName = 'C_NUM_FICHA'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 1
+      Searchable = False
+      Sortable = False
+    end
+    object dbCertppField3: TppField
+      FieldAlias = 'C_LETRA'
+      FieldName = 'C_LETRA'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 2
+      Searchable = False
+      Sortable = False
+    end
+    object dbCertppField4: TppField
+      FieldAlias = 'NOME'
+      FieldName = 'NOME'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 3
+      Searchable = False
+      Sortable = False
+    end
+    object dbCertppField5: TppField
+      FieldAlias = 'MODELO'
+      FieldName = 'MODELO'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 4
+      Searchable = False
+      Sortable = False
+    end
+    object dbCertppField6: TppField
+      FieldAlias = 'ANO'
+      FieldName = 'ANO'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 5
+      Searchable = False
+      Sortable = False
+    end
+    object dbCertppField7: TppField
+      FieldAlias = 'PLACA'
+      FieldName = 'PLACA'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 6
+      Searchable = False
+      Sortable = False
+    end
+    object dbCertppField8: TppField
+      FieldAlias = 'DESCRICAO'
+      FieldName = 'DESCRICAO'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 7
+      Searchable = False
+      Sortable = False
+    end
+    object dbCertppField9: TppField
+      FieldAlias = 'NUM_FICHA'
+      FieldName = 'NUM_FICHA'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 8
+      Searchable = False
+      Sortable = False
+    end
+  end
+  object Rel: TppReport
+    AutoStop = False
+    DataPipeline = dbCert
+    PrinterSetup.BinName = 'Default'
+    PrinterSetup.DocumentName = 'Report'
+    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PrinterName = 'Default'
+    PrinterSetup.SaveDeviceSettings = False
+    PrinterSetup.mmMarginBottom = 6350
+    PrinterSetup.mmMarginLeft = 6350
+    PrinterSetup.mmMarginRight = 6350
+    PrinterSetup.mmMarginTop = 6350
+    PrinterSetup.mmPaperHeight = 297000
+    PrinterSetup.mmPaperWidth = 210000
+    PrinterSetup.PaperSize = 9
+    Template.FileName = 'C:\Projetos\CarrosV2\Certificado.rtm'
+    Units = utMillimeters
+    AllowPrintToFile = True
+    ArchiveFileName = '($MyDocuments)\ReportArchive.raf'
+    DeviceType = 'Screen'
+    DefaultFileDeviceType = 'PDF'
+    EmailSettings.ReportFormat = 'PDF'
+    LanguageID = 'Default'
+    OpenFile = False
+    OutlineSettings.CreateNode = True
+    OutlineSettings.CreatePageNodes = True
+    OutlineSettings.Enabled = False
+    OutlineSettings.Visible = False
+    ThumbnailSettings.Enabled = True
+    ThumbnailSettings.Visible = True
+    ThumbnailSettings.DeadSpace = 30
+    PDFSettings.EmbedFontOptions = []
+    PDFSettings.EncryptSettings.AllowCopy = True
+    PDFSettings.EncryptSettings.AllowInteract = True
+    PDFSettings.EncryptSettings.AllowModify = True
+    PDFSettings.EncryptSettings.AllowPrint = True
+    PDFSettings.EncryptSettings.Enabled = False
+    PDFSettings.EncryptSettings.KeyLength = kl40Bit
+    PDFSettings.FontEncoding = feAnsi
+    PDFSettings.ImageCompressionLevel = 25
+    PreviewFormSettings.WindowState = wsMaximized
+    PreviewFormSettings.ZoomSetting = zs100Percent
+    RTFSettings.DefaultFont.Charset = DEFAULT_CHARSET
+    RTFSettings.DefaultFont.Color = clWindowText
+    RTFSettings.DefaultFont.Height = -13
+    RTFSettings.DefaultFont.Name = 'Arial'
+    RTFSettings.DefaultFont.Style = []
+    TextFileName = '($MyDocuments)\Report.pdf'
+    TextSearchSettings.DefaultString = '<Texto a localizar>'
+    TextSearchSettings.Enabled = True
+    XLSSettings.AppName = 'ReportBuilder'
+    XLSSettings.Author = 'ReportBuilder'
+    XLSSettings.Subject = 'Report'
+    XLSSettings.Title = 'Report'
+    Left = 232
+    Top = 32
+    Version = '15.03'
+    mmColumnWidth = 0
+    DataPipelineName = 'dbCert'
+    object ppDetailBand1: TppDetailBand
+      Background1.Brush.Style = bsClear
+      Background2.Brush.Style = bsClear
+      mmBottomOffset = 0
+      mmHeight = 280000
+      mmPrintPosition = 0
+      object ppDBText1: TppDBText
+        UserName = 'DBText1'
+        DataField = 'NOME'
+        DataPipeline = dbCert
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 24
+        Font.Style = []
+        Transparent = True
+        DataPipelineName = 'dbCert'
+        mmHeight = 9737
+        mmLeft = 3440
+        mmTop = 185738
+        mmWidth = 154517
+        BandType = 4
+        LayerName = Foreground
+      end
+      object ppDBText3: TppDBText
+        UserName = 'DBText3'
+        DataField = 'MARCA_MOD_ANO_NRO'
+        DataPipeline = dbCert
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 28
+        Font.Style = []
+        Transparent = True
+        DataPipelineName = 'dbCert'
+        mmHeight = 11303
+        mmLeft = 3440
+        mmTop = 197909
+        mmWidth = 154517
+        BandType = 4
+        LayerName = Foreground
+      end
+      object ppDBText6: TppDBText
+        UserName = 'DBText6'
+        DataField = 'C_NUM_FICHA'
+        DataPipeline = dbCert
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 55
+        Font.Style = [fsBold]
+        TextAlignment = taRightJustified
+        Transparent = True
+        DataPipelineName = 'dbCert'
+        mmHeight = 22310
+        mmLeft = 158750
+        mmTop = 185738
+        mmWidth = 35190
+        BandType = 4
+        LayerName = Foreground
+      end
+      object ppDBText2: TppDBText
+        UserName = 'DBText2'
+        DataField = 'C_LETRA'
+        DataPipeline = dbCert
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clRed
+        Font.Name = 'Arial'
+        Font.Size = 55
+        Font.Style = [fsBold]
+        TextAlignment = taRightJustified
+        Transparent = True
+        DataPipelineName = 'dbCert'
+        mmHeight = 22310
+        mmLeft = 159809
+        mmTop = 209550
+        mmWidth = 34131
+        BandType = 4
+        LayerName = Foreground
+      end
+    end
+    object ppDesignLayers1: TppDesignLayers
+      object ppDesignLayer1: TppDesignLayer
+        UserName = 'Foreground'
+        LayerType = ltBanded
+        Index = 0
+      end
+    end
+    object ppParameterList1: TppParameterList
+    end
+  end
+  object designe: TppDesigner
+    Caption = 'ReportBuilder'
+    DataSettings.SessionType = 'BDESession'
+    DataSettings.AllowEditSQL = False
+    DataSettings.GuidCollationType = gcString
+    DataSettings.IsCaseSensitive = True
+    DataSettings.SQLType = sqBDELocal
+    Position = poScreenCenter
+    Report = Rel
+    IniStorageType = 'IniFile'
+    IniStorageName = '($LocalAppData)\RBuilder\RBuilder.ini'
+    WindowHeight = 400
+    WindowLeft = 100
+    WindowTop = 50
+    WindowWidth = 600
+    Left = 288
+    Top = 32
+  end
+end

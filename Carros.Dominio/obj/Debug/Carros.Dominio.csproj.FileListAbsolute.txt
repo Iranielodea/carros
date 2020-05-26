@@ -1,0 +1,11 @@
+C:\Projetos\dotNet\Carros\Carros.Dominio\bin\Debug\Carros.Dominio.dll
+C:\Projetos\dotNet\Carros\Carros.Dominio\bin\Debug\Carros.Dominio.pdb
+C:\Projetos\dotNet\Carros\Carros.Dominio\obj\Debug\Carros.Dominio.dll
+C:\Projetos\dotNet\Carros\Carros.Dominio\obj\Debug\Carros.Dominio.pdb
+C:\Projetos\DotNet\Carros\Carros.Dominio\obj\Debug\Carros.Dominio.csprojAssemblyReference.cache
+C:\Projetos\DotNet\Carros\Carros.Dominio\obj\Debug\Carros.Dominio.csproj.CoreCompileInputs.cache
+C:\Projetos\DotNet\Carros\Carros.Dominio\bin\Debug\Carros.Comum.dll
+C:\Projetos\DotNet\Carros\Carros.Dominio\bin\Debug\Carros.Comum.pdb
+C:\Projetos\DotNet\Carros\Carros.Dominio\obj\Debug\Carros.Dominio.csproj.CopyComplete
+C:\Projetos\DotNet\Carros\Carros.Dominio\bin\Debug\Newtonsoft.Json.dll
+C:\Projetos\DotNet\Carros\Carros.Dominio\bin\Debug\Newtonsoft.Json.xml

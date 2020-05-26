@@ -1,0 +1,16 @@
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\bin\Debug\netcoreapp2.1\Carros.InfraEFCor2_1.deps.json
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\bin\Debug\netcoreapp2.1\Carros.InfraEFCor2_1.dll
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\obj\Debug\netcoreapp2.1\Carros.InfraEFCor2_1.csprojAssemblyReference.cache
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\obj\Debug\netcoreapp2.1\Carros.InfraEFCor2_1.csproj.CoreCompileInputs.cache
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\obj\Debug\netcoreapp2.1\Carros.InfraEFCor2_1.AssemblyInfoInputs.cache
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\obj\Debug\netcoreapp2.1\Carros.InfraEFCor2_1.AssemblyInfo.cs
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\bin\Debug\netcoreapp2.1\Carros.InfraEFCor2_1.pdb
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\bin\Debug\netcoreapp2.1\Carros.Comum.dll
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\bin\Debug\netcoreapp2.1\Carros.Dominio.dll
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\bin\Debug\netcoreapp2.1\Newtonsoft.Json.dll
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\bin\Debug\netcoreapp2.1\Carros.Dominio.pdb
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\bin\Debug\netcoreapp2.1\Carros.Comum.pdb
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\bin\Debug\netcoreapp2.1\Newtonsoft.Json.xml
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\obj\Debug\netcoreapp2.1\Carros.InfraEFCor2_1.csproj.CopyComplete
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\obj\Debug\netcoreapp2.1\Carros.InfraEFCor2_1.dll
+C:\Projetos\DotNet\Carros\Carros.InfraEFCor2_1\obj\Debug\netcoreapp2.1\Carros.InfraEFCor2_1.pdb

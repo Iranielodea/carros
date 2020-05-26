@@ -1,0 +1,11 @@
+C:\Projetos\dotNet\Carros\Carros\Servico\bin\Debug\Servico.dll
+C:\Projetos\dotNet\Carros\Carros\Servico\bin\Debug\Servico.pdb
+C:\Projetos\dotNet\Carros\Carros\Servico\bin\Debug\Carros.Dominio.dll
+C:\Projetos\dotNet\Carros\Carros\Servico\bin\Debug\Carros.Infra.dll
+C:\Projetos\dotNet\Carros\Carros\Servico\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+C:\Projetos\dotNet\Carros\Carros\Servico\bin\Debug\Carros.Dominio.pdb
+C:\Projetos\dotNet\Carros\Carros\Servico\bin\Debug\Carros.Infra.pdb
+C:\Projetos\dotNet\Carros\Carros\Servico\bin\Debug\FirebirdSql.Data.FirebirdClient.pdb
+C:\Projetos\dotNet\Carros\Carros\Servico\obj\Debug\Servico.csprojResolveAssemblyReference.cache
+C:\Projetos\dotNet\Carros\Carros\Servico\obj\Debug\Servico.dll
+C:\Projetos\dotNet\Carros\Carros\Servico\obj\Debug\Servico.pdb

@@ -1,0 +1,6 @@
+C:\Projetos\dotNet\Carros\Carros.Comum\bin\Debug\Carros.Comum.dll
+C:\Projetos\dotNet\Carros\Carros.Comum\bin\Debug\Carros.Comum.pdb
+C:\Projetos\dotNet\Carros\Carros.Comum\obj\Debug\Carros.Comum.dll
+C:\Projetos\dotNet\Carros\Carros.Comum\obj\Debug\Carros.Comum.pdb
+C:\Projetos\DotNet\Carros\Carros.Comum\obj\Debug\Carros.Comum.csprojAssemblyReference.cache
+C:\Projetos\DotNet\Carros\Carros.Comum\obj\Debug\Carros.Comum.csproj.CoreCompileInputs.cache

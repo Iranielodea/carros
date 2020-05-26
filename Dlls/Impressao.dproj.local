@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2019/02/14 12:30:45.000.297,=C:\Users\User\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/05/01 09:15:35.000.086,=C:\Users\User\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/02/23 22:46:36.000.336,C:\Projetos\DotNet\Carros\Dlls\Impressao.dproj=C:\Users\User\Documents\RAD Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2020/02/23 22:47:17.000.923,=C:\Projetos\DotNet\Carros\Dlls\Unit1.pas</Transaction>
+    <Transaction>2020/02/23 22:48:03.000.992,C:\Projetos\DotNet\Carros\Dlls\uEncontro.pas=C:\Projetos\DotNet\Carros\Dlls\Unit1.pas</Transaction>
+    <Transaction>2020/02/23 22:52:29.000.796,=C:\Projetos\DotNet\Carros\Dlls\Unit1.pas</Transaction>
+    <Transaction>2020/02/23 22:52:44.000.047,C:\Projetos\DotNet\Carros\Dlls\uTela.pas=C:\Projetos\DotNet\Carros\Dlls\Unit1.pas</Transaction>
+    <Transaction>2020/02/23 22:52:44.000.047,C:\Projetos\DotNet\Carros\Dlls\uTela.dfm=C:\Projetos\DotNet\Carros\Dlls\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

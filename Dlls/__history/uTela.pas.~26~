@@ -1,0 +1,125 @@
+unit uTela;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Datasnap.DBClient, ppDB,
+  ppComm, ppRelatv, ppDBPipe, ppParameter, ppDesignLayer, ppCtrls, ppPrnabl,
+  ppClass, ppCache, ppBands, ppProd, ppReport, ppEndUsr;
+
+type
+  TfrmTela = class(TForm)
+    dsCert: TClientDataSet;
+    dsCertC_LETRA: TStringField;
+    dsCertNOME: TStringField;
+    dsCertMODELO: TStringField;
+    dsCertANO: TStringField;
+    dsCertC_NUM_FICHA: TStringField;
+    dsCertMARCA_MOD_ANO_NRO: TStringField;
+    DBCert: TppDBPipeline;
+    ds1: TDataSource;
+    designe: TppDesigner;
+    Rel: TppReport;
+    ppDetailBand1: TppDetailBand;
+    ppDBText1: TppDBText;
+    ppDBText3: TppDBText;
+    ppDBText6: TppDBText;
+    ppDBText2: TppDBText;
+    ppLabel1: TppLabel;
+    ppDesignLayers1: TppDesignLayers;
+    ppDesignLayer1: TppDesignLayer;
+    ppParameterList1: TppParameterList;
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+    FCampos: array [1..5] of string;
+    procedure Extrair(ATexto: string);
+  public
+    { Public declarations }
+      procedure Imprimir(ATexto: string); overload;
+      procedure Impressao(ANome, AAno, AModelo, ANumFicha, ALetra: AnsiString); overload;
+  end;
+
+var
+  frmTela: TfrmTela;
+
+implementation
+
+{$R *.dfm}
+
+{ TfrmTela }
+
+procedure TfrmTela.Extrair(ATexto: string);
+var
+  i, indice: Integer;
+  a, b: string;
+begin
+  b := '';
+  indice := 1;
+  for i := 1 to Length(ATexto) do
+  begin
+    a := Copy(ATexto, i, 1);
+    if a = '|' then
+    begin
+      FCampos[indice] := b;
+      Inc(indice);
+      b := '';
+      Continue;
+    end;
+    b := b + a;
+  end;
+end;
+
+procedure TfrmTela.FormCreate(Sender: TObject);
+begin
+  dsCert.CreateDataSet;
+end;
+
+procedure TfrmTela.Impressao(ANome, AAno, AModelo, ANumFicha, ALetra: AnsiString);
+begin
+  Rel.Template.FileName := 'Certificado.rtm';
+  Rel.Template.LoadFromFile;
+
+  dsCert.Append;
+  dsCertC_LETRA.AsString := ALetra;
+  dsCertNOME.AsString := ANome;
+  dsCertMODELO.AsString := AModelo;
+  dsCertANO.AsString := AAno;
+
+  dsCertC_NUM_FICHA.AsString := ANumFicha;
+
+  dsCertMARCA_MOD_ANO_NRO.AsString := dsCertMODELO.AsString + '    ' + dsCertANO.AsString;
+  dsCert.Post;
+
+  Rel.Print;
+end;
+
+procedure TfrmTela.Imprimir(ATexto: string);
+begin
+  Rel.Template.FileName := 'Certificado.rtm';
+  Rel.Template.LoadFromFile;
+
+  FCampos[1] := '';
+  FCampos[2] := '';
+  FCampos[3] := '';
+  FCampos[4] := '';
+  FCampos[5] := '';
+
+  Extrair(ATexto);
+
+  dsCert.Append;
+  dsCertC_LETRA.AsString := FCampos[1];
+  dsCertNOME.AsString := FCampos[2];
+  dsCertMODELO.AsString := FCampos[3];
+  dsCertANO.AsString := FCampos[4];
+  dsCertC_NUM_FICHA.AsString := FCampos[5];
+
+  dsCertMARCA_MOD_ANO_NRO.AsString := dsCertMODELO.AsString + '    ' + dsCertANO.AsString;
+  dsCert.Post;
+
+  Rel.Print;
+
+end;
+
+end.
