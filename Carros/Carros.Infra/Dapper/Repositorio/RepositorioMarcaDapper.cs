@@ -10,7 +10,7 @@ namespace Carros.Infra.Dapper.Repositorio
     public class RepositorioMarcaDapper : RepositorioBase<Marca>, IRepositorioMarca
     {
         private IDbConnection _conexao;
-        private IDbTransaction _transaction;
+        private readonly IDbTransaction _transaction;
 
         public RepositorioMarcaDapper(IDbConnection conexao, IDbTransaction transaction) : base(conexao, transaction)
         {

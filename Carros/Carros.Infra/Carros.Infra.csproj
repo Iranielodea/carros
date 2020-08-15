@@ -78,6 +78,7 @@
     <Compile Include="Dapper\Mapping\UsuarioMap.cs" />
     <Compile Include="Dapper\Repositorio\RepositorioBase.cs" />
     <Compile Include="Dapper\Repositorio\RepositorioCadEncontroDapper.cs" />
+    <Compile Include="Dapper\Repositorio\RepositoryCidadeDapper.cs" />
     <Compile Include="Dapper\Repositorio\RepositorioContatoDapper.cs" />
     <Compile Include="Dapper\Repositorio\RepositorioEncontroDapper.cs" />
     <Compile Include="Dapper\Repositorio\RepositorioFiliacaoDapper.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Dapper\Repositorio\RepositorioVeiculoDapper.cs" />
     <Compile Include="Dapper\Repositorio\RepositorioUsuarioDapper.cs" />
     <Compile Include="Dapper\Repositorio\RepositorioCidadeDapper.cs" />
+    <Compile Include="Dapper\Repositorio\RepositoryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dapper\Mapping\CidadeMap.cs" />
     <Compile Include="Repositorio\CadEncontroRepositorioADO.cs" />

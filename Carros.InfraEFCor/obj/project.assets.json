@@ -982,27 +982,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
-      },
-      "Carros.Comum/1.0.0": {
-        "type": "project",
-        "compile": {
-          "bin/placeholder/Carros.Comum.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Carros.Comum.dll": {}
-        }
-      },
-      "Carros.Dominio/1.0.0": {
-        "type": "project",
-        "dependencies": {
-          "Carros.Comum": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Carros.Dominio.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Carros.Dominio.dll": {}
-        }
       }
     }
   },
@@ -3954,21 +3933,11 @@
         "system.xml.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xmldocument.nuspec"
       ]
-    },
-    "Carros.Comum/1.0.0": {
-      "type": "project",
-      "path": "../Carros.Comum/Carros.Comum.csproj",
-      "msbuildProject": "../Carros.Comum/Carros.Comum.csproj"
-    },
-    "Carros.Dominio/1.0.0": {
-      "type": "project",
-      "path": "../Carros.Dominio/Carros.Dominio.csproj",
-      "msbuildProject": "../Carros.Dominio/Carros.Dominio.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "Carros.Dominio >= 1.0.0",
+      "C:\\Projetos\\DotNet\\Carros\\Carros.Dominio\\Carros.Dominio.csproj",
       "EntityFrameworkCore.FirebirdSQL >= 2.1.2.2",
       "Microsoft.EntityFrameworkCore.Proxies >= 2.1.2",
       "NETStandard.Library >= 2.0.3"
@@ -4041,5 +4010,16 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1105",
+      "level": "Error",
+      "message": "Unable to find project information for 'C:\\Projetos\\DotNet\\Carros\\Carros.Dominio\\Carros.Dominio.csproj'. Inside Visual Studio, this may be because the project is unloaded or not part of current solution. Otherwise the project file may be invalid or missing targets required for restore.",
+      "libraryId": "C:\\Projetos\\DotNet\\Carros\\Carros.Dominio\\Carros.Dominio.csproj",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    }
+  ]
 }

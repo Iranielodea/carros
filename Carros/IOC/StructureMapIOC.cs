@@ -1,8 +1,5 @@
 ﻿using Carros.Dominio.Interfaces.Servico;
 using Carros.Dominio.Servicos;
-using Carros.InfraEFCor;
-using Carros.InfraEFCor.Interfaces;
-using Carros.InfraEFCor.Repositorio;
 using StructureMap;
 using ObjectFactory = StructureMap.ObjectFactory;
 
@@ -20,19 +17,21 @@ namespace Carros.IOC
                     scan.WithDefaultConventions();
                 });
 
-                x.For<IRepositorioMarca>().Use<RepositorioMarca>();
-                x.For<ITransacao>().Use<TransacaoEF>();
-                x.For<IRepositorioTabControle>().Use<RepositorioTabControle>();
-                x.For<IRepositorioUsuario>().Use<RepositorioUsuario>();
-                x.For<IRepositorioCadEncontro>().Use<RepositorioCadEncontro>();
-                x.For<IRepositorioCidade>().Use<RepositorioCidade>();
-                x.For<IRepositorioProfissao>().Use<RepositorioProfissao>();
-                x.For<IRepositorioVeiculo>().Use<RepositorioVeiculo>();
-                x.For<IRepositorioVeiculo>().Use<RepositorioVeiculo>();
+                //x.For<IRepositorioMarca>().Use<RepositorioMarca>();
+                //x.For<ITransacao>().Use<TransacaoEF>();
+                //x.For<IRepositorioTabControle>().Use<RepositorioTabControle>();
+                //x.For<IRepositorioUsuario>().Use<RepositorioUsuario>();
+                //x.For<IRepositorioCadEncontro>().Use<RepositorioCadEncontro>();
+                //x.For<IRepositorioCidade>().Use<RepositorioCidade>();
+                //x.For<IRepositorioProfissao>().Use<RepositorioProfissao>();
+                //x.For<IRepositorioVeiculo>().Use<RepositorioVeiculo>();
+                //x.For<IRepositorioVeiculo>().Use<RepositorioVeiculo>();
 
+                x.For(typeof(IServiceBase<>)).Use(typeof(ServiceBase<>));
                 x.For(typeof(IServicoBase<>)).Use(typeof(ServicoBase<>));
                 x.For(typeof(IServicoProfissao)).Use(typeof(ServicoProfissao));
                 x.For(typeof(IServicoCidade)).Use(typeof(ServicoCidade));
+                x.For(typeof(IServiceCidade)).Use(typeof(ServiceCidade));
                 x.For(typeof(IServicoUsuario)).Use(typeof(ServicoUsuario));
                 x.For(typeof(IServicoTabControle)).Use(typeof(ServicoTabControle));
                 x.For(typeof(IServicoCadEncontro)).Use(typeof(ServicoCadEncontro));

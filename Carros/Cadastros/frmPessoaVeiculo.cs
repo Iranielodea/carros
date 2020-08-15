@@ -12,7 +12,7 @@ namespace Carros.Cadastros
         int _idPessoa;
         int _ID;
         private VeiculoPessoa _model;
-        private IUnitOfWork _unitOfWork;
+        private IUnitOfWorkOld _unitOfWork;
 
         public frmPessoaVeiculo()
         {
@@ -45,7 +45,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWork>();
+            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
 
             Geral.Grade.Config(dgvDados);
 

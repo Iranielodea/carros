@@ -22,7 +22,8 @@ C:\Projetos\DotNet\Carros\Carros\Carros.CrosPlataform\obj\Debug\Carros.CrosPlata
 C:\Projetos\DotNet\Carros\Carros\Carros.CrosPlataform\obj\Debug\Carros.CrosPlataform.csproj.CopyComplete
 C:\Projetos\DotNet\Carros\Carros\Carros.CrosPlataform\obj\Debug\Carros.CrosPlataform.dll
 C:\Projetos\DotNet\Carros\Carros\Carros.CrosPlataform\obj\Debug\Carros.CrosPlataform.pdb
-C:\Projetos\DotNet\Carros\Carros\Carros.CrosPlataform\bin\Debug\StructureMap.dll
 C:\Projetos\DotNet\Carros\Carros\Carros.CrosPlataform\bin\Debug\StructureMap.xml
 C:\Projetos\DotNet\Carros\Carros\Carros.CrosPlataform\bin\Debug\Newtonsoft.Json.dll
 C:\Projetos\DotNet\Carros\Carros\Carros.CrosPlataform\bin\Debug\Newtonsoft.Json.xml
+C:\Projetos\DotNet\Carros\Carros\Carros.CrosPlataform\bin\Debug\Ninject.dll
+C:\Projetos\DotNet\Carros\Carros\Carros.CrosPlataform\bin\Debug\Ninject.xml

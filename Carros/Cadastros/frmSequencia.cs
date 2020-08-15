@@ -8,7 +8,7 @@ namespace Carros.Cadastros
     public partial class frmSequencia : Carros.Base.frmConsultaBase
     {
         private Sequencia _model;
-        private IUnitOfWork _unitOfWork;
+        private IUnitOfWorkOld _unitOfWork;
 
         public frmSequencia()
         {
@@ -22,7 +22,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWork>();
+            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
 
             Geral.Grade.Config(dgvDados);
 

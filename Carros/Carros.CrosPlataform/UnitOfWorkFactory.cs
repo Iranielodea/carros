@@ -4,9 +4,9 @@ namespace Carros.CrosPlataform
 {
     public class UnitOfWorkFactory
     {
-        public IUnitOfWork Retorno()
+        public IUnitOfWorkOld Retorno()
         {
-            return new UnitOfWork();
+            return new UnitOfWorkOld();
         }
     }
 }

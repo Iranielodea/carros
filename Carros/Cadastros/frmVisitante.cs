@@ -2,6 +2,7 @@
 using Carros.Consultas;
 using Carros.Dominio.Entidades;
 using Carros.Dominio.Interfaces;
+using Carros.Dominio.Interfaces.Servico;
 using StructureMap;
 using System;
 using System.Windows.Forms;
@@ -13,7 +14,7 @@ namespace Carros.Cadastros
     {
         private Pessoa _model;
         private EnTipoExpositor _tipoExpositor;
-        private IUnitOfWork _unitOfWork;
+        private IUnitOfWorkOld _unitOfWork;
 
         public frmVisitante()
         {
@@ -70,7 +71,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWork>();
+            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
 
             Geral.Grade.Config(dgvDados);
 
@@ -231,7 +232,7 @@ namespace Carros.Cadastros
                 _model.Profissao = _unitOfWork.ServicoProfissao.RetornarPorId(_model.ProfissaoId.Value);
             base.Editar();
 
-            txtCPF.Text = _model.CPF;
+            txtCPF.Text = _model.CPF.ToString();
             VincularDados();
             gbTipo.Enabled = false;
             txtNome.Focus();

@@ -75,7 +75,7 @@
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 50);
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(828, 70);
+            this.menuStrip1.Size = new System.Drawing.Size(828, 71);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -94,7 +94,7 @@
             this.toolStripMenuItem2,
             this.sairDoSistemaToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
-            this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(84, 18);
+            this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(84, 19);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
             // 
             // expositoresToolStripMenuItem
@@ -175,7 +175,7 @@
             this.encontrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lançamentosToolStripMenuItem});
             this.encontrosToolStripMenuItem.Name = "encontrosToolStripMenuItem";
-            this.encontrosToolStripMenuItem.Size = new System.Drawing.Size(82, 18);
+            this.encontrosToolStripMenuItem.Size = new System.Drawing.Size(82, 19);
             this.encontrosToolStripMenuItem.Text = "Encontros";
             // 
             // lançamentosToolStripMenuItem
@@ -192,7 +192,7 @@
             this.tabelaDeControleToolStripMenuItem,
             this.cadastroDeEncontrosToolStripMenuItem});
             this.configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
-            this.configuraçõesToolStripMenuItem.Size = new System.Drawing.Size(109, 18);
+            this.configuraçõesToolStripMenuItem.Size = new System.Drawing.Size(109, 19);
             this.configuraçõesToolStripMenuItem.Text = "Configurações";
             // 
             // sequenciaisToolStripMenuItem
@@ -222,7 +222,7 @@
             this.exportarEmailsToolStripMenuItem,
             this.configurarCertificadoToolStripMenuItem});
             this.utilitáriosToolStripMenuItem.Name = "utilitáriosToolStripMenuItem";
-            this.utilitáriosToolStripMenuItem.Size = new System.Drawing.Size(78, 18);
+            this.utilitáriosToolStripMenuItem.Size = new System.Drawing.Size(78, 19);
             this.utilitáriosToolStripMenuItem.Text = "Utilitários";
             // 
             // exportarEmailsToolStripMenuItem
@@ -299,9 +299,9 @@
             this.flowLayoutPanel1.Controls.Add(this.btnAutomovel);
             this.flowLayoutPanel1.Controls.Add(this.btnEncontro);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 70);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 71);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(137, 365);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(137, 364);
             this.flowLayoutPanel1.TabIndex = 8;
             // 
             // frmMenu

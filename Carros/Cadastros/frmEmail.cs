@@ -16,12 +16,12 @@ namespace Carros.Cadastros
 {
     public partial class frmEmail : Form
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWorkOld _unitOfWork;
 
         public frmEmail()
         {
             InitializeComponent();
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWork>();
+            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
         }
 
         private void frmEmail_KeyDown(object sender, KeyEventArgs e)

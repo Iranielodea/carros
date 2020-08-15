@@ -59,10 +59,6 @@
       <Project>{9a90cb6b-0dd6-4ac8-be8f-c594aae4f664}</Project>
       <Name>Carros.Dominio</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Carros.InfraEFCor\Carros.InfraEFCor.csproj">
-      <Project>{8adf73fa-c99a-4208-8fe5-055777bfe490}</Project>
-      <Name>Carros.InfraEFCor</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Carros.CrosPlataform\Carros.CrosPlataform.csproj">
       <Project>{2072d985-e6a1-482a-a0fb-375f6a1b3b2e}</Project>
       <Name>Carros.CrosPlataform</Name>

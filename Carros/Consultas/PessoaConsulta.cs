@@ -10,13 +10,14 @@ using static Carros.Geral.Enumercador;
 using System.Windows.Forms;
 using Carros.Cadastros;
 using Carros.Dominio.Interfaces;
+using Carros.Dominio.Interfaces.Servico;
 
 namespace Carros.Consultas
 {
     public class PessoaConsulta
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public PessoaConsulta(IUnitOfWork unitOfWork)
+        private readonly IUnitOfWorkOld _unitOfWork;
+        public PessoaConsulta(IUnitOfWorkOld unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

@@ -17,8 +17,11 @@ namespace Carros.CrosPlataform
                 x.For<IDbConnection>().Use<FbConnection>();
                 x.For<IDbTransaction>().Use<FbTransaction>();
                 x.For(typeof(IRepositorioBase<>)).Use(typeof(RepositorioBase<>));
+                x.For<IUnitOfWorkOld>().Use<UnitOfWorkOld>();
                 x.For<IUnitOfWork>().Use<UnitOfWork>();
+                x.For(typeof(IRepositoryBase<>)).Use(typeof(RepositoryBase<>));
 
+                x.For(typeof(IRepositoryCidade)).Use(typeof(RepositoryCidadeDapper));
                 x.For(typeof(IRepositorioProfissao)).Use(typeof(RepositorioProfissaoDapper));
                 x.For(typeof(IRepositorioCidade)).Use(typeof(RepositorioCidadeDapper));
                 x.For(typeof(IRepositorioUsuario)).Use(typeof(RepositorioUsuarioDapper));
@@ -37,7 +40,7 @@ namespace Carros.CrosPlataform
                 //=======================================================================
                 // SERVICOS
                 //=======================================================================
-
+                x.For(typeof(IServiceBase<>)).Use(typeof(ServiceBase<>));
                 x.For(typeof(IServicoBase<>)).Use(typeof(ServicoBase<>));
                 x.For(typeof(IServicoProfissao)).Use(typeof(ServicoProfissao));
                 x.For(typeof(IServicoCidade)).Use(typeof(ServicoCidade));
@@ -53,6 +56,7 @@ namespace Carros.CrosPlataform
                 x.For(typeof(IServicoVeiculoPessoa)).Use(typeof(ServicoVeiculoPessoa));
                 x.For(typeof(IServicoFiliacao)).Use(typeof(ServicoFiliacao));
                 x.For(typeof(IServicoSQL)).Use(typeof(ServicoSQL));
+                x.For(typeof(IServiceCidade)).Use(typeof(ServiceCidade));
                 //x.For(typeof(ServicoSQL));
             });
         }

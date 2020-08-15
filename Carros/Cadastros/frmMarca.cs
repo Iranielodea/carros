@@ -13,7 +13,7 @@ namespace Carros.Cadastros
          * www.heroisdati.com/ninject-injecao-de-dependecia-simples/
          */
         private Marca _model;
-        private IUnitOfWork _unitOfWork;
+        private IUnitOfWorkOld _unitOfWork;
 
         public frmMarca()
         {
@@ -37,7 +37,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWork>();
+            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
 
             Geral.Grade.Config(dgvDados);
 

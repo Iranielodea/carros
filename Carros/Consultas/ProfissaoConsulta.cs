@@ -10,9 +10,9 @@ namespace Carros.Consultas
 {
     public class ProfissaoConsulta
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWorkOld _unitOfWork;
 
-        public ProfissaoConsulta(IUnitOfWork unitOfWork)
+        public ProfissaoConsulta(IUnitOfWorkOld unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

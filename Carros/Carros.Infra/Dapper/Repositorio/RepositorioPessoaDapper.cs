@@ -13,7 +13,7 @@ namespace Carros.Infra.Dapper.Repositorio
     public class RepositorioPessoaDapper : RepositorioBase<Pessoa>, IRepositorioPessoa
     {
         private IDbConnection _conexao;
-        private IDbTransaction _transaction;
+        private readonly IDbTransaction _transaction;
 
         public RepositorioPessoaDapper(IDbConnection conexao, IDbTransaction transaction) : base(conexao, transaction)
         {

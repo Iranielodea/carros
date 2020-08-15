@@ -24,5 +24,10 @@ namespace Carros.Infra.Banco
             string conn = ConfigurationManager.ConnectionStrings["FireBirdConnectionString"].ToString();
             return new FbConnection(conn);
         }
+
+        public static string ConexaoBanco()
+        {
+            return ConfigurationManager.ConnectionStrings["FireBirdConnectionString"].ToString();
+        }
     }
 }

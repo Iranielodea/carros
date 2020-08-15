@@ -1,4 +1,5 @@
 ﻿using Carros.Cadastros;
+using Carros.CrosPlataform;
 using Carros.Dominio.Entidades;
 using Carros.Dominio.Interfaces;
 using StructureMap;
@@ -27,7 +28,8 @@ namespace Carros
 
         private void cidadesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AbrirTela(new frmCidade());
+            AbrirTela(CompositionRoot.Resolve<frmCidade>());
+            //AbrirTela(new frmCidade());
         }
 
         private void profissõesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -68,16 +70,19 @@ namespace Carros
 
         private void expositoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //AbrirTela(CompositionRoot.Resolve<frmVisitante>());
             AbrirTela(new frmVisitante(Comum.EnTipoExpositor.expSocio));
         }
 
         private void expositoresVisitantesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //AbrirTela(CompositionRoot.Resolve<frmVisitante>());
             AbrirTela(new frmVisitante(Comum.EnTipoExpositor.expVisitante));
         }
 
         private void cadastroDeSóciosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //AbrirTela(CompositionRoot.Resolve<frmVisitante>());
             AbrirTela(new frmVisitante(Comum.EnTipoExpositor.expCadSocio));
         }
 
@@ -102,7 +107,7 @@ namespace Carros
                 NumeroFicha = 100
             };
 
-            using (var _unitOfWork = ObjectFactory.GetInstance<IUnitOfWork>())
+            using (var _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>())
             {
                 _unitOfWork.ServicoEncontro.Imprimir(impressao, true);
             }
@@ -110,7 +115,7 @@ namespace Carros
 
         private void BuscarVersao()
         {
-            using (var _unitOfWork = ObjectFactory.GetInstance<IUnitOfWork>())
+            using (var _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>())
             {
                 var versao = _unitOfWork.ServicoTabControle.RetornarTodos().FirstOrDefault(x => x.Sigla == "VERSAO").ValorInt;
                 rodape.Text = "Versão: " + versao;
@@ -134,6 +139,7 @@ namespace Carros
 
         private void btnExpositores_Click(object sender, EventArgs e)
         {
+            //AbrirTela(CompositionRoot.Resolve<frmVisitante>());
             AbrirTela(new frmVisitante(Comum.EnTipoExpositor.expVisitante));
         }
 

@@ -13,7 +13,7 @@ namespace Carros.Cadastros
     {
         private Veiculo _model;
         private bool _filtrar = false;
-        private IUnitOfWork _unitOfWork;
+        private IUnitOfWorkOld _unitOfWork;
 
         public frmVeiculo()
         {
@@ -35,7 +35,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWork>();
+            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
 
             Geral.Grade.Config(dgvDados);
 

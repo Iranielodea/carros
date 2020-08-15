@@ -10,7 +10,7 @@ namespace Carros.Cadastros
     public partial class frmUsuario : Carros.Base.frmConsultaBase
     {
         private Usuario _model;
-        private IUnitOfWork _unitOfWork;
+        private IUnitOfWorkOld _unitOfWork;
 
         public frmUsuario()
         {
@@ -23,7 +23,7 @@ namespace Carros.Cadastros
 
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWork>();
+            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
 
             Geral.Grade.Config(dgvDados);
 

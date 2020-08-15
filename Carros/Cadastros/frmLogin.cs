@@ -23,7 +23,7 @@ namespace Carros.Cadastros
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            using (var unit = ObjectFactory.GetInstance<IUnitOfWork>())
+            using (var unit = ObjectFactory.GetInstance<IUnitOfWorkOld>())
             {
                 try
                 {
@@ -58,7 +58,7 @@ namespace Carros.Cadastros
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            using (var unit = ObjectFactory.GetInstance<IUnitOfWork>())
+            using (var unit = ObjectFactory.GetInstance<IUnitOfWorkOld>())
             {
                 unit.ServicoTabControle.AtualizarVersao();
 

@@ -1,4 +1,5 @@
-﻿using Carros.Dominio.Entidades;
+﻿using Carros.Comum;
+using Carros.Dominio.Entidades;
 using Carros.Dominio.Interfaces;
 using Carros.Dominio.Interfaces.Servico;
 using System;
@@ -30,6 +31,8 @@ namespace Carros.Dominio.Servicos
         {
             if (string.IsNullOrWhiteSpace(model.Nome))
                 throw new Exception("Informe o Nome!");
+
+            model.CEP = model.CEP.SoNumeros();
 
             if (model.Id == 0)
                 _repositorioCidade.Adicionar(ref model);

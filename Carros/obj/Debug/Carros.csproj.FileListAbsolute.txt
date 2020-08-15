@@ -37,9 +37,7 @@ C:\Projetos\DotNet\Carros\Carros\bin\Debug\Newtonsoft.Json.dll
 C:\Projetos\DotNet\Carros\Carros\bin\Debug\Newtonsoft.Json.xml
 C:\Projetos\DotNet\Carros\Carros\obj\Debug\Carros.Cadastros.frmEmail.resources
 C:\Projetos\DotNet\Carros\Carros\obj\Debug\Carros.Cadastros.frmLogin.resources
-C:\Projetos\DotNet\Carros\Carros\bin\Debug\Carros.InfraEFCor.dll
 C:\Projetos\DotNet\Carros\Carros\bin\Debug\netstandard.dll
-C:\Projetos\DotNet\Carros\Carros\bin\Debug\Carros.InfraEFCor.pdb
 C:\Projetos\DotNet\Carros\Carros\bin\Debug\Microsoft.Win32.Primitives.dll
 C:\Projetos\DotNet\Carros\Carros\bin\Debug\System.AppContext.dll
 C:\Projetos\DotNet\Carros\Carros\bin\Debug\System.Collections.Concurrent.dll
@@ -182,7 +180,6 @@ C:\Projetos\DotNet\Carros\Carros\bin\Debug\System.Memory.xml
 C:\Projetos\DotNet\Carros\Carros\bin\Debug\System.Numerics.Vectors.xml
 C:\Projetos\DotNet\Carros\Carros\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Projetos\DotNet\Carros\Carros\obj\Debug\Carros.exe.config
-C:\Projetos\DotNet\Carros\Carros\bin\Debug\StructureMap.dll
 C:\Projetos\DotNet\Carros\Carros\bin\Debug\StructureMap.xml
 C:\Projetos\DotNet\Carros\Carros\bin\Debug\Microsoft.Practices.ServiceLocation.dll
 C:\Projetos\DotNet\Carros\Carros\bin\Debug\Microsoft.Web.Infrastructure.dll
@@ -200,3 +197,5 @@ C:\Projetos\DotNet\Carros\Carros\bin\Debug\Dapper.xml
 C:\Projetos\DotNet\Carros\Carros\bin\Debug\Carros.CrosPlataform.dll
 C:\Projetos\DotNet\Carros\Carros\bin\Debug\Carros.CrosPlataform.pdb
 C:\Projetos\DotNet\Carros\Carros\obj\Debug\Carros.Cadastros.frmFiliacao.resources
+C:\Projetos\DotNet\Carros\Carros\bin\Debug\Ninject.dll
+C:\Projetos\DotNet\Carros\Carros\bin\Debug\Ninject.xml

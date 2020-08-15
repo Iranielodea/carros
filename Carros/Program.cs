@@ -1,4 +1,5 @@
 ﻿using Carros.Cadastros;
+using Carros.CrosPlataform;
 using System;
 using System.Windows.Forms;
 
@@ -12,11 +13,15 @@ namespace Carros
         [STAThread]
         static void Main()
         {
+            CompositionRoot.Wire(new ApplicationModule());
+
+            Carros.CrosPlataform.BootStrapper.ConfigureStructerMap();
             IOC.StructureMapIOC.Initialize();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new frmMenu());
-            Application.Run(new frmLogin());
+            Application.Run(CompositionRoot.Resolve<frmLogin>());
+           // Application.Run(new frmLogin());
         }
     }
 }

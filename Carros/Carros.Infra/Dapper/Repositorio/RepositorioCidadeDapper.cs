@@ -10,7 +10,7 @@ namespace Carros.Infra.Dapper.Repositorio
     public class RepositorioCidadeDapper : RepositorioBase<Cidade>, IRepositorioCidade
     {
         private IDbConnection _conexao;
-        private IDbTransaction _transaction;
+        private readonly IDbTransaction _transaction;
 
         public RepositorioCidadeDapper(IDbConnection conexao, IDbTransaction transaction) : base(conexao, transaction)
         {

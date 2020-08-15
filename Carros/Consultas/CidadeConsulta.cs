@@ -1,7 +1,9 @@
 ﻿using Carros.Cadastros;
 using Carros.Comum;
+using Carros.CrosPlataform;
 using Carros.Dominio.Entidades;
 using Carros.Dominio.Interfaces;
+using Carros.Dominio.Interfaces.Servico;
 using System.Linq;
 using System.Windows.Forms;
 using static Carros.Geral.Enumercador;
@@ -10,9 +12,9 @@ namespace Carros.Consultas
 {
     public class CidadeConsulta
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWorkOld _unitOfWork;
 
-        public CidadeConsulta(IUnitOfWork unitOfWork)
+        public CidadeConsulta(IUnitOfWorkOld unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -32,6 +34,7 @@ namespace Carros.Consultas
                         model = lista.Single();
                     else
                     {
+                        //var frm = CompositionRoot.ResolveWithArgument<frmCidade>(new Ninject.Parameters.ConstructorArgument("pesquisa", true));
                         var frm = new frmCidade(true, descricao);
                         frm.ShowDialog();
                         if (frm.DialogResult == DialogResult.OK)
