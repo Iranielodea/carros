@@ -9,11 +9,14 @@ namespace Carros.Cadastros
 {
     public partial class frmLogin : Form
     {
+        private DalSession _session;
+
         public frmLogin()
         {
             InitializeComponent();
             BootStrapper.ConfigureStructerMap();
             RegisterMappings.Register();
+            _session = new DalSession();
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -23,27 +26,16 @@ namespace Carros.Cadastros
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            using (var unit = ObjectFactory.GetInstance<IUnitOfWorkOld>())
+            try
             {
-                try
-                {
-                    try
-                    {
-                        unit.ServicoUsuario.ObterPorUsuario(txtUsuario.Text, txtSenha.Text);
-                        frmMenu menu = new frmMenu();
-                        menu.Show();
-                        this.Visible = false;
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    txtUsuario.Focus();
-                }
+                _session.ServiceUsuario.ObterPorUsuario(txtUsuario.Text, txtSenha.Text);
+                frmMenu menu = new frmMenu();
+                menu.Show();
+                this.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
@@ -58,13 +50,15 @@ namespace Carros.Cadastros
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            using (var unit = ObjectFactory.GetInstance<IUnitOfWorkOld>())
-            {
-                unit.ServicoTabControle.AtualizarVersao();
+            _session.ServiceTabControle.AtualizarVersao();
 
-                var CadEncontro = unit.ServicoCadEncontro.ObterNumeroEncontroAtual();
-                txtEncontro.Text = CadEncontro.Descricao;
-            }
+            var CadEncontro = _session.ServiceCadEncontro.ObterNumeroEncontroAtual();
+            txtEncontro.Text = CadEncontro.Descricao;
+        }
+
+        private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _session.Dispose();
         }
     }
 }

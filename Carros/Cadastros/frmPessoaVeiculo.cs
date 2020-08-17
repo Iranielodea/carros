@@ -1,4 +1,5 @@
 ﻿using Carros.Comum;
+using Carros.CrosPlataform;
 using Carros.Dominio.Entidades;
 using Carros.Dominio.Interfaces;
 using StructureMap;
@@ -12,7 +13,7 @@ namespace Carros.Cadastros
         int _idPessoa;
         int _ID;
         private VeiculoPessoa _model;
-        private IUnitOfWorkOld _unitOfWork;
+        private DalSession _session;
 
         public frmPessoaVeiculo()
         {
@@ -33,7 +34,7 @@ namespace Carros.Cadastros
         private void BuscarPessoa()
         {
             var Pessoa = new Pessoa();
-            Pessoa = _unitOfWork.ServicoPessoa.RetornarPorId(_idPessoa);
+            Pessoa = _session.ServicePessoa.RetornarPorId(_idPessoa);
             txtIdPessoa.Text = Pessoa.Id.ToString();
             txtNomePessoa.Text = Pessoa.Nome;
         }
@@ -45,7 +46,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
+            _session = new DalSession();
 
             Geral.Grade.Config(dgvDados);
 
@@ -55,7 +56,7 @@ namespace Carros.Cadastros
 
         private void CarregarConsulta(int id = 0)
         {
-            dgvDados.DataSource = _unitOfWork.ServicoVeiculoPessoa.ListarPorPessoa(_idPessoa);
+            dgvDados.DataSource = _session.ServiceVeiculoPessoa.ListarPorPessoa(_idPessoa);
         }
 
         private void txtTexto_KeyDown(object sender, KeyEventArgs e)
@@ -97,11 +98,11 @@ namespace Carros.Cadastros
                 return;
 
             _model.IdPessoa = _idPessoa;
-            _model = _unitOfWork.ServicoVeiculoPessoa.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
-            _model.Veiculo = _unitOfWork.ServicoVeiculo.RetornarPorId(_model.IdVeiculo);
-            _model.Pessoa = _unitOfWork.ServicoPessoa.RetornarPorId(_model.IdPessoa);
+            _model = _session.ServiceVeiculoPessoa.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+            _model.Veiculo = _session.ServiceVeiculo.RetornarPorId(_model.IdVeiculo);
+            _model.Pessoa = _session.ServicePessoa.RetornarPorId(_model.IdPessoa);
             if (_model.Veiculo != null)
-                _model.Veiculo.Marca = _unitOfWork.ServicoMarca.RetornarPorId(_model.Veiculo.IdMarca);
+                _model.Veiculo.Marca = _session.ServiceMarca.RetornarPorId(_model.Veiculo.IdMarca);
 
             _ID = _model.Id;
             base.Editar();
@@ -116,7 +117,7 @@ namespace Carros.Cadastros
             _model.IdPessoa = _idPessoa;
             _model.IdVeiculo = Convert.ToInt32(txtIdVeiculo.Text);
 
-            _unitOfWork.ServicoVeiculoPessoa.Salvar(_model);
+            _session.ServiceVeiculoPessoa.Salvar(_model);
             base.Salvar();
             CarregarConsulta(_model.Id);
             txtTexto.Focus();
@@ -142,7 +143,7 @@ namespace Carros.Cadastros
 
             if (Funcoes.Confirmar("Deseja Excluir?"))
             {
-                _unitOfWork.ServicoVeiculoPessoa.Excluir(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+                _session.ServiceVeiculoPessoa.Excluir(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
                 CarregarConsulta(0);
                 txtTexto.Focus();
             }
@@ -169,7 +170,7 @@ namespace Carros.Cadastros
 
         private void PesquisarVeiculo(string tipo)
         {
-            Consultas.VeiculoConsulta consulta = new Consultas.VeiculoConsulta(_unitOfWork);
+            Consultas.VeiculoConsulta consulta = new Consultas.VeiculoConsulta(_session);
             Veiculo veiculo = new Veiculo();
             if (tipo == "P")
                 veiculo = consulta.Pesquisar(txtPlaca.Text, Geral.Enumercador.TipoConsulta.Descricao);
@@ -221,9 +222,9 @@ namespace Carros.Cadastros
                 var Pessoa = new Pessoa();
                 string nomePessoa = "";
 
-                Pessoa = _unitOfWork.ServicoPessoa.RetornarPorId(_idPessoa);
+                Pessoa = _session.ServicePessoa.RetornarPorId(_idPessoa);
                 nomePessoa = Pessoa.Nome;
-                int numFicha = _unitOfWork.ServicoPessoa.ObterNumeroFichar(_idPessoa);
+                int numFicha = _session.ServicePessoa.ObterNumeroFichar(_idPessoa);
 
                 string modelo = dgvDados.CurrentRow.Cells["Modelo"].Value.ToString();
                 string ano = dgvDados.CurrentRow.Cells["Ano"].Value.ToString();
@@ -276,7 +277,7 @@ namespace Carros.Cadastros
 
         private void frmPessoaVeiculo_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _unitOfWork.Dispose();
+            _session.Dispose();
         }
     }
 }

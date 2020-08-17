@@ -1,9 +1,7 @@
 ﻿using Carros.Comum;
 using Carros.Consultas;
+using Carros.CrosPlataform;
 using Carros.Dominio.Entidades;
-using Carros.Dominio.Interfaces;
-using Carros.Dominio.Interfaces.Servico;
-using StructureMap;
 using System;
 using System.Windows.Forms;
 using static Carros.Geral.Enumercador;
@@ -14,7 +12,7 @@ namespace Carros.Cadastros
     {
         private Pessoa _model;
         private EnTipoExpositor _tipoExpositor;
-        private IUnitOfWorkOld _unitOfWork;
+        private DalSession _session;
 
         public frmVisitante()
         {
@@ -71,7 +69,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
+            _session = new DalSession();
 
             Geral.Grade.Config(dgvDados);
 
@@ -114,15 +112,15 @@ namespace Carros.Cadastros
                 filtro.Telefone = txtTexto.Text;
 
             if (_tipoExpositor == EnTipoExpositor.expCadSocio)
-                dgvDados.DataSource = _unitOfWork.ServicoPessoa.FiltrarCadastroSocios(filtro, id);
+                dgvDados.DataSource = _session.ServicePessoa.FiltrarCadastroSocios(filtro, id);
             else if (_tipoExpositor == EnTipoExpositor.expSocio)
-                dgvDados.DataSource = _unitOfWork.ServicoPessoa.FiltrarSocios(filtro, id);
+                dgvDados.DataSource = _session.ServicePessoa.FiltrarSocios(filtro, id);
             else if (_tipoExpositor == EnTipoExpositor.expVisitante)
-                dgvDados.DataSource = _unitOfWork.ServicoPessoa.FiltrarVisitantes(filtro, id);
+                dgvDados.DataSource = _session.ServicePessoa.FiltrarVisitantes(filtro, id);
             else if (_tipoExpositor == EnTipoExpositor.expTodos)
-                dgvDados.DataSource = _unitOfWork.ServicoPessoa.FiltrarTodos(filtro, id);
+                dgvDados.DataSource = _session.ServicePessoa.FiltrarTodos(filtro, id);
             else if (_tipoExpositor == EnTipoExpositor.expExpositores)
-                dgvDados.DataSource = _unitOfWork.ServicoPessoa.FiltrarExpositores(filtro, id);
+                dgvDados.DataSource = _session.ServicePessoa.FiltrarExpositores(filtro, id);
         }
 
         private void txtTexto_KeyDown(object sender, KeyEventArgs e)
@@ -224,12 +222,12 @@ namespace Carros.Cadastros
                 return;
 
             tabControl2.SelectedIndex = 0;
-            _model = _unitOfWork.ServicoPessoa.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+            _model = _session.ServicePessoa.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
             if (_model.CidadeId != null)
-                _model.Cidade = _unitOfWork.ServicoCidade.RetornarPorId(_model.CidadeId.Value);
+                _model.Cidade = _session.ServiceCidade.RetornarPorId(_model.CidadeId.Value);
 
             if (_model.ProfissaoId != null)
-                _model.Profissao = _unitOfWork.ServicoProfissao.RetornarPorId(_model.ProfissaoId.Value);
+                _model.Profissao = _session.ServiceProfissao.RetornarPorId(_model.ProfissaoId.Value);
             base.Editar();
 
             txtCPF.Text = _model.CPF.ToString();
@@ -257,7 +255,7 @@ namespace Carros.Cadastros
                 else if (rbExpVisitante.Checked)
                     _tipoExpositor = EnTipoExpositor.expVisitante;
 
-                _unitOfWork.ServicoPessoa.Salvar(_model, _tipoExpositor);
+                _session.ServicePessoa.Salvar(_model, _tipoExpositor);
                 base.Salvar();
                 CarregarConsulta(_model.Id);
                 txtTexto.Focus();
@@ -290,7 +288,7 @@ namespace Carros.Cadastros
 
             if (Funcoes.Confirmar("Deseja Excluir?"))
             {
-                _unitOfWork.ServicoPessoa.Excluir(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+                _session.ServicePessoa.Excluir(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
                 CarregarConsulta(0);
                 txtTexto.Focus();
             }
@@ -319,7 +317,7 @@ namespace Carros.Cadastros
                 return;
             }
 
-            var cidade = new CidadeConsulta(_unitOfWork);
+            var cidade = new CidadeConsulta(_session);
             var model = cidade.Pesquisar(id, descricao, tipo);
 
             if (model.Id == 0 && tipo == TipoConsulta.Id)
@@ -348,7 +346,7 @@ namespace Carros.Cadastros
                 return;
             }
 
-            var profissao = new ProfissaoConsulta(_unitOfWork);
+            var profissao = new ProfissaoConsulta(_session);
             var model = profissao.Pesquisar(id, descricao, tipo);
 
             if (model.Id == 0 && tipo == TipoConsulta.Id)
@@ -428,7 +426,7 @@ namespace Carros.Cadastros
             if (dgvDados.RowCount > 0)
             {
                 var cliente = new Pessoa();
-                cliente = _unitOfWork.ServicoPessoa.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+                cliente = _session.ServicePessoa.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
                 frmContato f = new frmContato(true, cliente.Id);
                 f.ShowDialog();
             }
@@ -439,7 +437,7 @@ namespace Carros.Cadastros
             if (dgvDados.RowCount > 0)
             {
                 var cliente = new Pessoa();
-                cliente = _unitOfWork.ServicoPessoa.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+                cliente = _session.ServicePessoa.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
                 frmPessoaVeiculo f = new frmPessoaVeiculo(true, cliente.Id);
                 f.ShowDialog();
             }
@@ -447,7 +445,7 @@ namespace Carros.Cadastros
 
         private void BuscarNumeroFicha(int idPessoa)
         {
-            txtFicha.Text = _unitOfWork.ServicoPessoa.ObterNumeroFichar(idPessoa).ToString();
+            txtFicha.Text = _session.ServicePessoa.ObterNumeroFichar(idPessoa).ToString();
         }
 
         public override void Pesquisar()
@@ -481,7 +479,7 @@ namespace Carros.Cadastros
         {
             if (txtCodigo.Text == "0")
             {
-                _model = _unitOfWork.ServicoPessoa.ObterPorCPF(txtCPF.Text, _tipoExpositor);
+                _model = _session.ServicePessoa.ObterPorCPF(txtCPF.Text, _tipoExpositor);
                 if (_model != null)
                 {
                     VincularDados();
@@ -498,7 +496,7 @@ namespace Carros.Cadastros
 
         private void frmVisitante_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _unitOfWork.Dispose();
+            _session.Dispose();
         }
     }
 }

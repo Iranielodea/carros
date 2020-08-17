@@ -1,8 +1,7 @@
 ﻿using Carros.Comum;
 using Carros.Consultas;
+using Carros.CrosPlataform;
 using Carros.Dominio.Entidades;
-using Carros.Dominio.Interfaces;
-using StructureMap;
 using System;
 using System.Windows.Forms;
 using static Carros.Geral.Enumercador;
@@ -13,7 +12,7 @@ namespace Carros.Cadastros
     {
         private Encontro _model;
         private int _id;
-        private IUnitOfWorkOld _unitOfWork;
+        private DalSession _session;
 
         public frmEncontro()
         {
@@ -41,11 +40,11 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
+            _session = new DalSession();
 
             Geral.Grade.Config(dgvDados);
 
-            txtNumEncontro.Text = _unitOfWork.ServicoEncontro.ObterEncontroAtual();
+            txtNumEncontro.Text = _session.ServiceEncontro.ObterEncontroAtual();
             CarregarConsulta();
 
             _model = new Encontro();
@@ -56,7 +55,7 @@ namespace Carros.Cadastros
 
         private void CarregarConsulta(int id = 0)
         {
-            dgvDados.DataSource = _unitOfWork.ServicoEncontro.ListarPorNome(txtTexto.Text, Funcoes.StrToIntDef(txtNumEncontro.Text, 0), id);
+            dgvDados.DataSource = _session.ServiceEncontro.ListarPorNome(txtTexto.Text, Funcoes.StrToIntDef(txtNumEncontro.Text, 0), id);
         }
 
         private void txtTexto_KeyDown(object sender, KeyEventArgs e)
@@ -111,8 +110,8 @@ namespace Carros.Cadastros
             if (dgvDados.RowCount == 0)
                 return;
 
-            _model = _unitOfWork.ServicoEncontro.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
-            _model.Pessoa = _unitOfWork.ServicoPessoa.RetornarPorId(_model.PessoaId);
+            _model = _session.ServiceEncontro.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+            _model.Pessoa = _session.ServicePessoa.RetornarPorId(_model.PessoaId);
             base.Editar();
 
             VincularDados();
@@ -131,7 +130,7 @@ namespace Carros.Cadastros
             _model.TipoExpositor = Funcoes.StrToIntDef(tipoExpositor, 0);
             _model.NumEncontro = Funcoes.StrToIntDef(txtEncontro.Text, 0);
 
-            _unitOfWork.ServicoEncontro.Salvar(_model);
+            _session.ServiceEncontro.Salvar(_model);
             base.Salvar();
             CarregarConsulta(_model.Id);
 
@@ -156,7 +155,7 @@ namespace Carros.Cadastros
 
             if (Funcoes.Confirmar("Deseja Excluir?"))
             {
-                _unitOfWork.ServicoEncontro.Excluir(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+                _session.ServiceEncontro.Excluir(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
                 CarregarConsulta(0);
 
                 txtTexto.Focus();
@@ -192,7 +191,7 @@ namespace Carros.Cadastros
                 return;
             }
 
-            var pessoa = new PessoaConsulta(_unitOfWork);
+            var pessoa = new PessoaConsulta(_session);
             var model = new Pessoa();
 
             model = pessoa.Pesquisar(id, descricao, tipo, EnTipoExpositor.expTodos);
@@ -265,7 +264,7 @@ namespace Carros.Cadastros
             if (dgvDados.RowCount > 0)
             {
                 var Encontro = new Encontro();
-                Encontro = _unitOfWork.ServicoEncontro.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+                Encontro = _session.ServiceEncontro.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
                 if (Encontro != null)
                 {
                     frmPessoaVeiculo f = new frmPessoaVeiculo(true, Encontro.PessoaId);
@@ -282,7 +281,7 @@ namespace Carros.Cadastros
 
         private void frmEncontro_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _unitOfWork.Dispose();
+            _session.Dispose();
         }
     }
 }

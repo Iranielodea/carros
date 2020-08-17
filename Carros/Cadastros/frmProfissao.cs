@@ -1,4 +1,5 @@
 ﻿using Carros.Comum;
+using Carros.CrosPlataform;
 using Carros.Dominio.Entidades;
 using Carros.Dominio.Interfaces;
 using StructureMap;
@@ -10,7 +11,7 @@ namespace Carros.Cadastros
     public partial class frmProfissao : Carros.Base.frmConsultaBase
     {
         private Profissao _model;
-        private IUnitOfWorkOld _unitOfWork;
+        private DalSession _session;
 
         public frmProfissao()
         {
@@ -24,7 +25,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
+            _session = new DalSession();
 
             Geral.Grade.Config(dgvDados);
 
@@ -41,7 +42,7 @@ namespace Carros.Cadastros
 
         private void CarregarConsulta(int id = 0)
         {
-            dgvDados.DataSource = _unitOfWork.ServicoProfissao.ListarPorNome(txtTexto.Text, id);
+            dgvDados.DataSource = _session.ServiceProfissao.ListarPorNome(txtTexto.Text, id);
         }
 
         private void txtTexto_KeyDown(object sender, KeyEventArgs e)
@@ -67,7 +68,7 @@ namespace Carros.Cadastros
             if (dgvDados.RowCount == 0)
                 return;
 
-            _model = _unitOfWork.ServicoProfissao.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+            _model = _session.ServiceProfissao.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
 
             base.Editar();
 
@@ -77,11 +78,18 @@ namespace Carros.Cadastros
 
         public override void Salvar()
         {
-            _unitOfWork.ServicoProfissao.Salvar(_model);
+            try
+            {
+                _session.ServiceProfissao.Salvar(_model);
 
-            base.Salvar();
-            CarregarConsulta(_model.Id);
-            txtTexto.Focus();
+                base.Salvar();
+                CarregarConsulta(_model.Id);
+                txtTexto.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public override void Novo()
@@ -101,7 +109,7 @@ namespace Carros.Cadastros
 
             if (Funcoes.Confirmar("Deseja Excluir?"))
             {
-                _unitOfWork.ServicoProfissao.Excluir(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+                _session.ServiceProfissao.Excluir(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
 
                 CarregarConsulta(0);
                 txtTexto.Focus();
@@ -150,7 +158,7 @@ namespace Carros.Cadastros
 
         private void frmProfissao_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _unitOfWork.Dispose();
+            _session.Dispose();
         }
     }
 }

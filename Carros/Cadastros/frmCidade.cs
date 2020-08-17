@@ -41,10 +41,6 @@ namespace Carros.Cadastros
         private void CarregarConsulta(int id = 0)
         {
             dgvDados.DataSource = _session.ServiceCidade.ListarPorNome(txtTexto.Text, id);
-            //using (var session = new DalSession())
-            //{
-            //    dgvDados.DataSource = session.ServiceCidade.ListarPorNome(txtTexto.Text, id);
-            //}
         }
 
         private void txtTexto_KeyDown(object sender, KeyEventArgs e)
@@ -76,11 +72,6 @@ namespace Carros.Cadastros
 
             _model = _session.ServiceCidade.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
 
-            //using (var session = new DalSession())
-            //{
-            //    _model = session.ServiceCidade.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
-            //}
-
             base.Editar();
 
             VincularDados();
@@ -89,15 +80,17 @@ namespace Carros.Cadastros
 
         public override void Salvar()
         {
-            _session.ServiceCidade.Salvar(_model);
-
-            //using (var session = new DalSession())
-            //{
-            //    session.ServiceCidade.Salvar(_model);
-            //}
-            base.Salvar();
-            CarregarConsulta(_model.Id);
-            txtTexto.Focus();
+            try
+            {
+                _session.ServiceCidade.Salvar(_model);
+                base.Salvar();
+                CarregarConsulta(_model.Id);
+                txtTexto.Focus();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public override void Novo()
@@ -118,11 +111,6 @@ namespace Carros.Cadastros
             if (Funcoes.Confirmar("Deseja Excluir?"))
             {
                 _session.ServiceCidade.Deletar(_session.ServiceCidade.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString())));
-
-                //using (var session = new DalSession())
-                //{
-                //    session.ServiceCidade.Deletar(session.ServiceCidade.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString())));
-                //}
                 CarregarConsulta(0);
                 txtTexto.Focus();
             }
@@ -170,7 +158,6 @@ namespace Carros.Cadastros
 
         private void frmCidade_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //_unitOfWork.Dispose();
             _session.Dispose();
         }
     }

@@ -9,11 +9,11 @@ namespace Carros.Consultas
 {
     public class VeiculoConsulta
     {
-        private readonly IUnitOfWorkOld _unitOfWork;
+        private readonly IDalSession _session;
 
-        public VeiculoConsulta(IUnitOfWorkOld unitOfWork)
+        public VeiculoConsulta(IDalSession session)
         {
-            _unitOfWork = unitOfWork;
+            _session = session;
         }
 
         public Veiculo Pesquisar(string placa, TipoConsulta tipo)
@@ -25,13 +25,13 @@ namespace Carros.Consultas
                 var frm = new frmVeiculo(true, "");
                 frm.ShowDialog();
                 if (frm.DialogResult == DialogResult.OK)
-                    model = _unitOfWork.ServicoVeiculo.RetornarPorId(Funcoes.IdRetorno);
+                    model = _session.ServiceVeiculo.RetornarPorId(Funcoes.IdRetorno);
             }
             else
-                model = _unitOfWork.ServicoVeiculo.ObterPorPlaca(placa);
+                model = _session.ServiceVeiculo.ObterPorPlaca(placa);
 
             if (model != null)
-                model.Marca = _unitOfWork.ServicoMarca.RetornarPorId(model.IdMarca);
+                model.Marca = _session.ServiceMarca.RetornarPorId(model.IdMarca);
             return model;
         }
     }

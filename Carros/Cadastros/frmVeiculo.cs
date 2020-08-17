@@ -1,5 +1,6 @@
 ﻿using Carros.Comum;
 using Carros.Consultas;
+using Carros.CrosPlataform;
 using Carros.Dominio.Entidades;
 using Carros.Dominio.Interfaces;
 using StructureMap;
@@ -13,7 +14,7 @@ namespace Carros.Cadastros
     {
         private Veiculo _model;
         private bool _filtrar = false;
-        private IUnitOfWorkOld _unitOfWork;
+        private DalSession _session;
 
         public frmVeiculo()
         {
@@ -35,7 +36,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
+            _session = new DalSession();
 
             Geral.Grade.Config(dgvDados);
 
@@ -80,7 +81,7 @@ namespace Carros.Cadastros
             if (cbCampos.SelectedIndex == 4)
                 filtro.Ano = txtTexto.Text;
 
-            dgvDados.DataSource = _unitOfWork.ServicoVeiculo.Filtrar(filtro, id);
+            dgvDados.DataSource = _session.ServiceVeiculo.Filtrar(filtro, id);
         }
 
         private void txtTexto_KeyDown(object sender, KeyEventArgs e)
@@ -114,8 +115,8 @@ namespace Carros.Cadastros
             if (dgvDados.RowCount == 0)
                 return;
 
-            _model = _unitOfWork.ServicoVeiculo.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
-            _model.Marca = _unitOfWork.ServicoMarca.RetornarPorId(_model.IdMarca);
+            _model = _session.ServiceVeiculo.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+            _model.Marca = _session.ServiceMarca.RetornarPorId(_model.IdMarca);
 
             base.Editar();
 
@@ -126,7 +127,7 @@ namespace Carros.Cadastros
         public override void Salvar()
         {
             _model.IdMarca = Funcoes.StrToIntNull(txtIdMarca.Text).Value;
-            _unitOfWork.ServicoVeiculo.Salvar(_model);
+            _session.ServiceVeiculo.Salvar(_model);
             base.Salvar();
             CarregarConsulta(_model.Id);
             txtTexto.Focus();
@@ -149,7 +150,7 @@ namespace Carros.Cadastros
 
             if (Funcoes.Confirmar("Deseja Excluir?"))
             {
-                _unitOfWork.ServicoVeiculo.Excluir(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+                _session.ServiceVeiculo.Excluir(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
                 CarregarConsulta(0);
                 txtTexto.Focus();
             }
@@ -177,7 +178,7 @@ namespace Carros.Cadastros
                 return;
             }
 
-            var marca = new MarcaConsulta(_unitOfWork);
+            var marca = new MarcaConsulta(_session);
             var model = new Marca();
 
             model = marca.Pesquisar(id, descricao, tipo);
@@ -246,7 +247,7 @@ namespace Carros.Cadastros
 
         private void frmVeiculo_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _unitOfWork.Dispose();
+            _session.Dispose();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Carros.Comum;
+using Carros.CrosPlataform;
 using Carros.Dominio.Entidades;
 using Carros.Dominio.Interfaces;
 using StructureMap;
@@ -10,7 +11,7 @@ namespace Carros.Cadastros
     public partial class frmUsuario : Carros.Base.frmConsultaBase
     {
         private Usuario _model;
-        private IUnitOfWorkOld _unitOfWork;
+        private DalSession _session;
 
         public frmUsuario()
         {
@@ -23,7 +24,7 @@ namespace Carros.Cadastros
 
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
+            _session = new DalSession();
 
             Geral.Grade.Config(dgvDados);
 
@@ -33,7 +34,7 @@ namespace Carros.Cadastros
 
         private void CarregarConsulta(int id = 0)
         {
-            dgvDados.DataSource = _unitOfWork.ServicoUsuario.ListarPorNome(txtTexto.Text, id);
+            dgvDados.DataSource = _session.ServiceUsuario.ListarPorNome(txtTexto.Text, id);
         }
 
         private void txtTexto_KeyDown(object sender, KeyEventArgs e)
@@ -62,7 +63,7 @@ namespace Carros.Cadastros
             if (dgvDados.RowCount == 0)
                 return;
 
-            _model = _unitOfWork.ServicoUsuario.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+            _model = _session.ServiceUsuario.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
             base.Editar();
 
             VincularDados();
@@ -74,7 +75,7 @@ namespace Carros.Cadastros
             try
             {
                 //_model.RedigitarSenha = txtConfirmarSenha.Text;
-                _unitOfWork.ServicoUsuario.Salvar(_model);
+                _session.ServiceUsuario.Salvar(_model);
                 base.Salvar();
 
                 CarregarConsulta(_model.Id);
@@ -103,7 +104,7 @@ namespace Carros.Cadastros
 
             if (Funcoes.Confirmar("Deseja Excluir?"))
             {
-                _unitOfWork.ServicoUsuario.Excluir(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+                _session.ServiceUsuario.Excluir(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
                 CarregarConsulta(0);
                 txtTexto.Focus();
             }
@@ -118,7 +119,7 @@ namespace Carros.Cadastros
 
         private void frmUsuario_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _unitOfWork.Dispose();
+            _session.Dispose();
         }
     }
 }

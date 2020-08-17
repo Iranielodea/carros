@@ -10,11 +10,11 @@ namespace Carros.Consultas
 {
     public class ProfissaoConsulta
     {
-        private readonly IUnitOfWorkOld _unitOfWork;
+        private readonly IDalSession _session;
 
-        public ProfissaoConsulta(IUnitOfWorkOld unitOfWork)
+        public ProfissaoConsulta(IDalSession session)
         {
-            _unitOfWork = unitOfWork;
+            _session = session;
         }
 
         public Profissao Pesquisar(int id, string descricao, TipoConsulta tipo)
@@ -22,13 +22,13 @@ namespace Carros.Consultas
             Profissao model = new Profissao();
 
             if (tipo == TipoConsulta.Id)
-                model = _unitOfWork.ServicoProfissao.RetornarPorId(id);
+                model = _session.ServiceProfissao.RetornarPorId(id);
 
             if (tipo == TipoConsulta.Descricao)
             {
                 if (!string.IsNullOrWhiteSpace(descricao))
                 {
-                    var lista = _unitOfWork.ServicoProfissao.ListarPorNome(descricao);
+                    var lista = _session.ServiceProfissao.ListarPorNome(descricao);
 
                     if (lista.Count == 1)
                         model = lista.Single();
@@ -37,7 +37,7 @@ namespace Carros.Consultas
                         var frm = new frmProfissao(true, descricao);
                         frm.ShowDialog();
                         if (frm.DialogResult == DialogResult.OK)
-                            model = _unitOfWork.ServicoProfissao.RetornarPorId(Funcoes.IdRetorno);
+                            model = _session.ServiceProfissao.RetornarPorId(Funcoes.IdRetorno);
                     }
                 }
             }
@@ -47,7 +47,7 @@ namespace Carros.Consultas
                 var frm = new frmProfissao(true, "");
                 frm.ShowDialog();
                 if (frm.DialogResult == DialogResult.OK)
-                    model = _unitOfWork.ServicoProfissao.RetornarPorId(Funcoes.IdRetorno);
+                    model = _session.ServiceProfissao.RetornarPorId(Funcoes.IdRetorno);
             }
             return model;
         }

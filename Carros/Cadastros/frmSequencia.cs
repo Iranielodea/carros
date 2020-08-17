@@ -1,4 +1,5 @@
-﻿using Carros.Dominio.Entidades;
+﻿using Carros.CrosPlataform;
+using Carros.Dominio.Entidades;
 using Carros.Dominio.Interfaces;
 using StructureMap;
 using System.Windows.Forms;
@@ -8,7 +9,7 @@ namespace Carros.Cadastros
     public partial class frmSequencia : Carros.Base.frmConsultaBase
     {
         private Sequencia _model;
-        private IUnitOfWorkOld _unitOfWork;
+        private DalSession _session;
 
         public frmSequencia()
         {
@@ -22,7 +23,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
+            _session = new DalSession();
 
             Geral.Grade.Config(dgvDados);
 
@@ -32,7 +33,7 @@ namespace Carros.Cadastros
 
         private void CarregarConsulta(int id = 0)
         {
-            dgvDados.DataSource = _unitOfWork.ServicoSequencia.ListarTudo(id);
+            dgvDados.DataSource = _session.ServiceSequencia.ListarTudo(id);
         }
 
         private void txtTexto_KeyDown(object sender, KeyEventArgs e)
@@ -62,7 +63,7 @@ namespace Carros.Cadastros
             if (dgvDados.RowCount == 0)
                 return;
 
-            _model = _unitOfWork.ServicoSequencia.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+            _model = _session.ServiceSequencia.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
 
             txtSigla.Enabled = false;
             base.Editar();
@@ -73,7 +74,7 @@ namespace Carros.Cadastros
 
         public override void Salvar()
         {
-            _unitOfWork.ServicoSequencia.Salvar(_model);
+            _session.ServiceSequencia.Salvar(_model);
 
             base.Salvar();
             CarregarConsulta(_model.Id);
@@ -112,7 +113,7 @@ namespace Carros.Cadastros
 
         private void frmSequencia_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _unitOfWork.Dispose();
+            _session.Dispose();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Carros.Comum;
+using Carros.CrosPlataform;
 using Carros.Dominio.Entidades;
 using Carros.Dominio.Interfaces;
 using StructureMap;
@@ -13,7 +14,7 @@ namespace Carros.Cadastros
          * www.heroisdati.com/ninject-injecao-de-dependecia-simples/
          */
         private Marca _model;
-        private IUnitOfWorkOld _unitOfWork;
+        private DalSession _session;
 
         public frmMarca()
         {
@@ -37,7 +38,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
+            _session = new DalSession();
 
             Geral.Grade.Config(dgvDados);
 
@@ -47,7 +48,7 @@ namespace Carros.Cadastros
 
         private void CarregarConsulta(int id = 0)
         {
-            dgvDados.DataSource = _unitOfWork.ServicoMarca.ListarPorNome(txtTexto.Text, id);
+            dgvDados.DataSource = _session.ServiceMarca.ListarPorNome(txtTexto.Text, id);
         }
 
         private void txtTexto_KeyDown(object sender, KeyEventArgs e)
@@ -75,7 +76,7 @@ namespace Carros.Cadastros
             if (dgvDados.RowCount == 0)
                 return;
 
-            _model = _unitOfWork.ServicoMarca.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+            _model = _session.ServiceMarca.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
             base.Editar();
 
             VincularDados();
@@ -84,7 +85,7 @@ namespace Carros.Cadastros
 
         public override void Salvar()
         {
-            _unitOfWork.ServicoMarca.Salvar(_model);
+            _session.ServiceMarca.Salvar(_model);
             base.Salvar();
             CarregarConsulta(_model.Id);
             txtTexto.Focus();
@@ -107,7 +108,7 @@ namespace Carros.Cadastros
 
             if (Funcoes.Confirmar("Deseja Excluir?"))
             {
-                _unitOfWork.ServicoMarca.Deletar(_unitOfWork.ServicoMarca.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString())));
+                _session.ServiceMarca.Deletar(_session.ServiceMarca.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString())));
 
                 CarregarConsulta(0);
                 txtTexto.Focus();
@@ -156,7 +157,7 @@ namespace Carros.Cadastros
 
         private void frmMarca_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _unitOfWork.Dispose();
+            _session.Dispose();
         }
     }
 }

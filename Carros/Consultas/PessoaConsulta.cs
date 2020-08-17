@@ -1,25 +1,19 @@
-﻿using Carros.Comum;
+﻿using Carros.Cadastros;
+using Carros.Comum;
 using Carros.Dominio.Entidades;
-using Carros.Servico;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Carros.Geral.Enumercador;
-using System.Windows.Forms;
-using Carros.Cadastros;
 using Carros.Dominio.Interfaces;
-using Carros.Dominio.Interfaces.Servico;
+using System.Linq;
+using System.Windows.Forms;
+using static Carros.Geral.Enumercador;
 
 namespace Carros.Consultas
 {
     public class PessoaConsulta
     {
-        private readonly IUnitOfWorkOld _unitOfWork;
-        public PessoaConsulta(IUnitOfWorkOld unitOfWork)
+        private readonly IDalSession _session;
+        public PessoaConsulta(IDalSession session)
         {
-            _unitOfWork = unitOfWork;
+            _session = session;
         }
 
         public Pessoa Pesquisar(int id, string descricao, TipoConsulta tipo, EnTipoExpositor tipoExpositor)
@@ -28,22 +22,22 @@ namespace Carros.Consultas
 
             if (tipo == TipoConsulta.Id)
             {
-                model = _unitOfWork.ServicoPessoa.RetornarPorId(id);
+                model = _session.ServicePessoa.RetornarPorId(id);
             }
             if (tipo == TipoConsulta.Descricao)
             {
                 if (!string.IsNullOrWhiteSpace(descricao))
                 {
-                    var lista = _unitOfWork.ServicoPessoa.ListarPorNome(descricao);
+                    var lista = _session.ServicePessoa.ListarPorNome(descricao);
 
                     if (lista.Count == 1)
-                        model = _unitOfWork.ServicoPessoa.RetornarPorId(lista.Single().Id);
+                        model = _session.ServicePessoa.RetornarPorId(lista.Single().Id);
                     else
                     {
                         var frm = new frmVisitante(tipoExpositor, true, descricao);
                         frm.ShowDialog();
                         if (frm.DialogResult == DialogResult.OK)
-                            model = _unitOfWork.ServicoPessoa.RetornarPorId(Funcoes.IdRetorno);
+                            model = _session.ServicePessoa.RetornarPorId(Funcoes.IdRetorno);
                     }
                 }
             }
@@ -53,7 +47,7 @@ namespace Carros.Consultas
                 var frm = new frmVisitante(tipoExpositor, true, "");
                 frm.ShowDialog();
                 if (frm.DialogResult == DialogResult.OK)
-                    model = _unitOfWork.ServicoPessoa.RetornarPorId(Funcoes.IdRetorno);
+                    model = _session.ServicePessoa.RetornarPorId(Funcoes.IdRetorno);
             }
             return model;
         }

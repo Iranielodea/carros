@@ -1,4 +1,5 @@
 ﻿using Carros.Comum;
+using Carros.CrosPlataform;
 using Carros.Dominio.Entidades;
 using Carros.Dominio.Interfaces;
 using StructureMap;
@@ -10,7 +11,7 @@ namespace Carros.Cadastros
     public partial class frmCadEncontro : Carros.Base.frmConsultaBase
     {
         private CadEncontro _model;
-        private IUnitOfWorkOld _unitOfWork;
+        private DalSession _session;
 
         public frmCadEncontro()
         {
@@ -24,7 +25,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
+            _session = new DalSession();
 
             Geral.Grade.Config(dgvDados);
 
@@ -34,7 +35,7 @@ namespace Carros.Cadastros
 
         private void CarregarConsulta(int id = 0)
         {
-            dgvDados.DataSource = _unitOfWork.ServicoCadEncontro.ListarPorNome(txtTexto.Text, id);
+            dgvDados.DataSource = _session.ServiceCadEncontro.ListarPorNome(txtTexto.Text, id);
         }
 
         private void txtTexto_KeyDown(object sender, KeyEventArgs e)
@@ -65,7 +66,7 @@ namespace Carros.Cadastros
             if (dgvDados.RowCount == 0)
                 return;
 
-            _model = _unitOfWork.ServicoCadEncontro.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+            _model = _session.ServiceCadEncontro.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
             base.Editar();
 
             VincularDados();
@@ -77,7 +78,7 @@ namespace Carros.Cadastros
             _model.EventoAtual = chkEventoAtual.Checked ? "S" : "N";
             try
             {
-                _unitOfWork.ServicoCadEncontro.Salvar(_model);
+                _session.ServiceCadEncontro.Salvar(_model);
             }
             catch (Exception ex)
             {
@@ -107,7 +108,7 @@ namespace Carros.Cadastros
 
             if (Funcoes.Confirmar("Deseja Excluir?"))
             {
-                _unitOfWork.ServicoCadEncontro.Deletar(_unitOfWork.ServicoCadEncontro.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString())));
+                _session.ServiceCadEncontro.Deletar(_session.ServiceCadEncontro.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString())));
                 CarregarConsulta(0);
                 txtTexto.Focus();
             }
@@ -122,7 +123,7 @@ namespace Carros.Cadastros
 
         private void frmCadEncontro_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _unitOfWork.Dispose();
+            _session.Dispose();
         }
     }
 }
