@@ -250,7 +250,6 @@
     </Compile>
     <Compile Include="Geral\Enumerador.cs" />
     <Compile Include="Geral\Grade.cs" />
-    <Compile Include="IOC\StructureMapIOC.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Base\frmConsultaBase.resx">

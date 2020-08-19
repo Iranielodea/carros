@@ -1,6 +1,7 @@
 ﻿using Carros.Comum;
 using Carros.CrosPlataform;
 using Carros.Dominio.Entidades;
+using Carros.Dominio.Interfaces;
 using System;
 using System.Windows.Forms;
 
@@ -9,7 +10,7 @@ namespace Carros.Cadastros
     public partial class frmCidade : Carros.Base.frmConsultaBase
     {
         private Cidade _model;
-        private DalSession _session;
+        private IDalSession _session;
 
         public frmCidade()
         {
@@ -30,7 +31,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _session = new DalSession();
+            _session = SessionFactory.Criar();
 
             Geral.Grade.Config(dgvDados);
 

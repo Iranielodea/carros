@@ -11,7 +11,7 @@ namespace Carros.Cadastros
     public partial class frmProfissao : Carros.Base.frmConsultaBase
     {
         private Profissao _model;
-        private DalSession _session;
+        private IDalSession _session;
 
         public frmProfissao()
         {
@@ -25,7 +25,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _session = new DalSession();
+            _session = SessionFactory.Criar();
 
             Geral.Grade.Config(dgvDados);
 

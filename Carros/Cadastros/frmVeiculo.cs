@@ -14,7 +14,7 @@ namespace Carros.Cadastros
     {
         private Veiculo _model;
         private bool _filtrar = false;
-        private DalSession _session;
+        private IDalSession _session;
 
         public frmVeiculo()
         {
@@ -36,7 +36,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _session = new DalSession();
+            _session = SessionFactory.Criar();
 
             Geral.Grade.Config(dgvDados);
 

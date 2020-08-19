@@ -85,5 +85,11 @@ namespace Carros.CrosPlataform
 
         private IServiceVeiculoPessoa _serviceVeiculoPessoa;
         public IServiceVeiculoPessoa ServiceVeiculoPessoa => _serviceVeiculoPessoa = _serviceVeiculoPessoa ?? new ServiceVeiculoPessoa(new RepositoryVeiculoPessoaDapper(_unitOfWork));
+
+        private IServiceFiliacao _serviceFiliacao;
+        public IServiceFiliacao ServiceFiliacao => _serviceFiliacao = _serviceFiliacao ?? new ServiceFiliacao(new RepositoryFiliacaoDapper(_unitOfWork));
+
+        private IServiceSQL _serviceSQL;
+        public IServiceSQL ServiceSQL => _serviceSQL = _serviceSQL ?? new ServiceSQL(new RepositorySQLDapper(_unitOfWork));
     }
 }

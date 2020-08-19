@@ -107,19 +107,12 @@ namespace Carros
                 NumeroFicha = 100
             };
 
-            using (var _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>())
-            {
-                _unitOfWork.ServicoEncontro.Imprimir(impressao, true);
-            }
+            SessionFactory.Criar().ServiceEncontro.Imprimir(impressao, true);
         }
 
         private void BuscarVersao()
         {
-            using (var _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>())
-            {
-                var versao = _unitOfWork.ServicoTabControle.RetornarTodos().FirstOrDefault(x => x.Sigla == "VERSAO").ValorInt;
-                rodape.Text = "Versão: " + versao;
-            }
+            var versao = SessionFactory.Criar().ServiceTabControle.RetornarTodos().FirstOrDefault(x => x.Sigla == "VERSAO").ValorInt;
         }
 
         private void exportarEmailsToolStripMenuItem_Click(object sender, EventArgs e)

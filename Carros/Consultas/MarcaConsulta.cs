@@ -1,7 +1,7 @@
 ﻿using Carros.Cadastros;
 using Carros.Comum;
-using Carros.CrosPlataform;
 using Carros.Dominio.Entidades;
+using Carros.Dominio.Interfaces;
 using System.Linq;
 using System.Windows.Forms;
 using static Carros.Geral.Enumercador;
@@ -10,9 +10,9 @@ namespace Carros.Consultas
 {
     public class MarcaConsulta
     {
-        private readonly DalSession _session;
+        private readonly IDalSession _session;
 
-        public MarcaConsulta(DalSession session)
+        public MarcaConsulta(IDalSession session)
         {
             _session = session;
         }

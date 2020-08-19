@@ -1,27 +1,18 @@
-﻿using Carros.Dominio.Entidades;
+﻿using Carros.CrosPlataform;
 using Carros.Dominio.Interfaces;
-using Carros.Servico;
-using StructureMap;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Carros.Cadastros
 {
     public partial class frmEmail : Form
     {
-        private readonly IUnitOfWorkOld _unitOfWork;
+        private IDalSession _session;
 
         public frmEmail()
         {
             InitializeComponent();
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
+            _session = SessionFactory.Criar();
         }
 
         private void frmEmail_KeyDown(object sender, KeyEventArgs e)
@@ -38,7 +29,7 @@ namespace Carros.Cadastros
 
         private void CarregarEncontro()
         {
-            var CadEncontro = _unitOfWork.ServicoCadEncontro.ObterNumeroEncontroAtual();
+            var CadEncontro = _session.ServiceCadEncontro.ObterNumeroEncontroAtual();
             txtNumEncontro.Text = CadEncontro.NumeroEncontro.ToString();
         }
 
@@ -58,7 +49,7 @@ namespace Carros.Cadastros
             else
                 tipo = Comum.EnTipoExpositor.expCadSocio;
 
-            var pessoas = _unitOfWork.ServicoPessoa.ListarEmails(Convert.ToInt32(txtNumEncontro.Text), tipo);
+            var pessoas = _session.ServicePessoa.ListarEmails(Convert.ToInt32(txtNumEncontro.Text), tipo);
             string email = "";
             foreach (var pessoa in pessoas)
             {
@@ -70,7 +61,7 @@ namespace Carros.Cadastros
 
         private void frmEmail_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _unitOfWork.Dispose();
+            _session.Dispose();
         }
     }
 }

@@ -9,14 +9,14 @@ namespace Carros.Cadastros
 {
     public partial class frmLogin : Form
     {
-        private DalSession _session;
+        private IDalSession _session;
 
         public frmLogin()
         {
             InitializeComponent();
-            BootStrapper.ConfigureStructerMap();
             RegisterMappings.Register();
-            _session = new DalSession();
+
+            _session = SessionFactory.Criar();
         }
 
         private void btnSair_Click(object sender, EventArgs e)

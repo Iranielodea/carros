@@ -2,6 +2,7 @@
 using Carros.Consultas;
 using Carros.CrosPlataform;
 using Carros.Dominio.Entidades;
+using Carros.Dominio.Interfaces;
 using System;
 using System.Windows.Forms;
 using static Carros.Geral.Enumercador;
@@ -12,7 +13,7 @@ namespace Carros.Cadastros
     {
         private Encontro _model;
         private int _id;
-        private DalSession _session;
+        private IDalSession _session;
 
         public frmEncontro()
         {
@@ -40,7 +41,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _session = new DalSession();
+            _session = SessionFactory.Criar();
 
             Geral.Grade.Config(dgvDados);
 

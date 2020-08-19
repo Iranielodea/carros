@@ -15,8 +15,6 @@ namespace Carros
         {
             CompositionRoot.Wire(new ApplicationModule());
 
-            Carros.CrosPlataform.BootStrapper.ConfigureStructerMap();
-            IOC.StructureMapIOC.Initialize();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new frmMenu());

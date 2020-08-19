@@ -1,4 +1,5 @@
 ﻿using Carros.Comum;
+using Carros.CrosPlataform;
 using Carros.Dominio.Entidades;
 using Carros.Dominio.Interfaces;
 using StructureMap;
@@ -10,7 +11,7 @@ namespace Carros.Cadastros
     {
         int _idPessoa;
         private Filiacao _model;
-        private IUnitOfWorkOld _unitOfWork;
+        private IDalSession _session;
 
         public frmFiliacao()
         {
@@ -33,7 +34,8 @@ namespace Carros.Cadastros
 
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
-            _unitOfWork = ObjectFactory.GetInstance<IUnitOfWorkOld>();
+
+            _session = SessionFactory.Criar();
 
             Geral.Grade.Config(dgvDados);
 
@@ -43,7 +45,7 @@ namespace Carros.Cadastros
 
         private void CarregarConsulta(int id = 0)
         {
-            dgvDados.DataSource = _unitOfWork.ServicoFiliacao.ListarPorPessoa(_idPessoa);
+            dgvDados.DataSource = _session.ServiceFiliacao.ListarPorPessoa(_idPessoa);
         }
 
         private void txtTexto_KeyDown(object sender, KeyEventArgs e)
@@ -72,7 +74,7 @@ namespace Carros.Cadastros
                 return;
 
             _model.PessoaId = _idPessoa;
-            _model = _unitOfWork.ServicoFiliacao.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
+            _model = _session.ServiceFiliacao.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString()));
             base.Editar();
 
             VincularDados();
@@ -81,7 +83,7 @@ namespace Carros.Cadastros
 
         public override void Salvar()
         {
-            _unitOfWork.ServicoFiliacao.Salvar(_model);
+            _session.ServiceFiliacao.Salvar(_model);
             base.Salvar();
             CarregarConsulta(_model.Id);
             txtTexto.Focus();
@@ -105,7 +107,7 @@ namespace Carros.Cadastros
 
             if (Funcoes.Confirmar("Deseja Excluir?"))
             {
-                _unitOfWork.ServicoFiliacao.Deletar(_unitOfWork.ServicoFiliacao.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString())));
+                _session.ServiceFiliacao.Deletar(_session.ServiceFiliacao.RetornarPorId(int.Parse(dgvDados.CurrentRow.Cells["Id"].Value.ToString())));
                 CarregarConsulta(0);
                 txtTexto.Focus();
             }
@@ -132,7 +134,7 @@ namespace Carros.Cadastros
 
         private void frmFiliacao_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _unitOfWork.Dispose();
+            _session.Dispose();
         }
     }
 }

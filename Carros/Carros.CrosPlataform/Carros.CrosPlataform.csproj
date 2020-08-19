@@ -65,14 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationModule.cs" />
-    <Compile Include="BootStrapper.cs" />
     <Compile Include="CompositionRoot.cs" />
     <Compile Include="DalSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterMappings.cs" />
+    <Compile Include="SessionFactory.cs" />
     <Compile Include="UnitOfWork.cs" />
-    <Compile Include="UnitOfWorkOld.cs" />
-    <Compile Include="UnitOfWorkFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Carros.Dominio\Carros.Dominio.csproj">

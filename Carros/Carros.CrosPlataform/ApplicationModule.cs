@@ -31,6 +31,8 @@ namespace Carros.CrosPlataform
             Bind(typeof(IRepositoryEncontro)).To(typeof(RepositoryEncontroDapper));
             Bind(typeof(IRepositoryPessoa)).To(typeof(RepositoryPessoaDapper));
             Bind(typeof(IRepositoryVeiculoPessoa)).To(typeof(RepositoryVeiculoPessoaDapper));
+            Bind(typeof(IRepositoryFiliacao)).To(typeof(RepositoryFiliacaoDapper));
+            Bind(typeof(IRepositorySQL)).To(typeof(RepositorySQLDapper));
 
             Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
             Bind(typeof(IServiceCidade)).To(typeof(ServiceCidade));
@@ -45,7 +47,8 @@ namespace Carros.CrosPlataform
             Bind(typeof(IServiceEncontro)).To(typeof(ServiceEncontro));
             Bind(typeof(IServicePessoa)).To(typeof(ServicePessoa));
             Bind(typeof(IServiceVeiculoPessoa)).To(typeof(ServiceVeiculoPessoa));
-
+            Bind(typeof(IServiceFiliacao)).To(typeof(ServiceFiliacao));
+            Bind(typeof(IServiceSQL)).To(typeof(ServiceSQL));
         }
     }
 }

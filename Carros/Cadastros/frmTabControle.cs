@@ -9,7 +9,7 @@ namespace Carros.Cadastros
     public partial class frmTabControle : Carros.Base.frmConsultaBase
     {
         private TabControle _model;
-        private DalSession _session;
+        private IDalSession _session;
 
         public frmTabControle()
         {
@@ -23,7 +23,7 @@ namespace Carros.Cadastros
             tabControl1.TabPages.Remove(tpEditar);
             tabControl1.TabPages.Remove(tpFiltro);
 
-            _session = new DalSession();
+            _session = SessionFactory.Criar();
 
             Geral.Grade.Config(dgvDados);
 
