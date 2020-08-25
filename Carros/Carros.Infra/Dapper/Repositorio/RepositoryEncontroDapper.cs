@@ -40,7 +40,7 @@ namespace Carros.Infra.Dapper.Repositorio
             if (id > 0)
                 sb.AppendLine(" WHERE E.ID = " + id);
             else
-                sb.AppendLine(" WHERE P.NOME containing('" + nomePessoa + "')");
+                sb.AppendLine(" WHERE P.NOME containing('" + nomePessoa.ToUpper() + "')");
             sb.AppendLine(" AND E.NUM_ENCONTRO = " + numEncontro);
 
             sb.AppendLine(" ORDER BY E.ID desc");

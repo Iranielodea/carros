@@ -23,7 +23,7 @@ namespace Carros.Dominio.Servicos
                 return _repositorioCadEncontro.RetornarTodos().Where(x => x.Id == id).ToList();
             else
                 return _repositorioCadEncontro.RetornarTodos()
-                    .Where(x => x.Descricao.Contains(nome)).OrderBy(x => x.Descricao).ToList();
+                    .Where(x => x.Descricao.Contains(nome.ToUpper())).OrderBy(x => x.Descricao).ToList();
         }
 
         public CadEncontro ObterNumeroEncontroAtual()

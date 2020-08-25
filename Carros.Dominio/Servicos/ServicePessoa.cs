@@ -38,7 +38,7 @@ namespace Carros.Dominio.Servicos
                 resultado = _repositorioPessoa.ListarTodosExpositores();
 
             if (!string.IsNullOrWhiteSpace(pessoaFiltro.Nome))
-                resultado = resultado.Where(x => x.Nome.Contains(pessoaFiltro.Nome));
+                resultado = resultado.Where(x => x.Nome.Contains(pessoaFiltro.Nome.ToUpper()));
 
             if (!string.IsNullOrWhiteSpace(pessoaFiltro.CPF))
             {
@@ -97,7 +97,7 @@ namespace Carros.Dominio.Servicos
         public List<PessoaPesquisa> ListarPorNome(string nome)
         {
             return _repositorioPessoa.ListarExpositoresVisitantes()
-                    .Where(x => x.Nome.Contains(nome)).OrderBy(x => x.Nome).ToList();
+                    .Where(x => x.Nome.Contains(nome.ToUpper())).OrderBy(x => x.Nome).ToList();
         }
 
         public int ObterNumeroFichar(int idPessoa)

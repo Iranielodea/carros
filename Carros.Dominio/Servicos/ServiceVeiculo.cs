@@ -31,13 +31,13 @@ namespace Carros.Dominio.Servicos
             else
             {
                 if (!string.IsNullOrWhiteSpace(filtro.DescMarca))
-                    resultado = resultado.Where(x => x.DescricaoMarca.Contains(filtro.DescMarca));
+                    resultado = resultado.Where(x => x.DescricaoMarca.Contains(filtro.DescMarca.ToUpper()));
                 if (!string.IsNullOrWhiteSpace(filtro.Ano))
                     resultado = resultado.Where(x => x.Ano == filtro.Ano);
                 if (!string.IsNullOrWhiteSpace(filtro.Modelo))
-                    resultado = resultado.Where(x => x.Modelo.Contains(filtro.Modelo));
+                    resultado = resultado.Where(x => x.Modelo.Contains(filtro.Modelo.ToUpper()));
                 if (!string.IsNullOrWhiteSpace(filtro.Placa))
-                    resultado = resultado.Where(x => x.Placa.Contains(filtro.Placa));
+                    resultado = resultado.Where(x => x.Placa.Contains(filtro.Placa.ToUpper()));
                 if (filtro.Id > 0)
                     resultado = resultado.Where(x => x.Id == filtro.Id);
 
@@ -48,7 +48,7 @@ namespace Carros.Dominio.Servicos
 
         public Veiculo ObterPorPlaca(string placa)
         {
-            return _repositorioVeiculo.RetornarTodos().FirstOrDefault(x => x.Placa == placa);
+            return _repositorioVeiculo.RetornarTodos().FirstOrDefault(x => x.Placa == placa.ToUpper());
         }
 
         public void Salvar(Veiculo model)

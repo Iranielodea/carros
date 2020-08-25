@@ -23,7 +23,7 @@ namespace Carros.Dominio.Servicos
                 return _repositorioCidade.RetornarTodos().Where(x => x.Id == id).ToList();
             else
                 return _repositorioCidade.RetornarTodos()
-                    .Where(x => x.Nome.Contains(nome)).OrderBy(x => x.Nome).ToList();
+                    .Where(x => x.Nome.Contains(nome.ToUpper())).OrderBy(x => x.Nome).ToList();
         }
 
         public void Salvar(Cidade model)

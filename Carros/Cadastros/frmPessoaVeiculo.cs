@@ -2,7 +2,6 @@
 using Carros.CrosPlataform;
 using Carros.Dominio.Entidades;
 using Carros.Dominio.Interfaces;
-using StructureMap;
 using System;
 using System.Windows.Forms;
 
